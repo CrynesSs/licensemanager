@@ -41,6 +41,83 @@ public class DatabaseManager {
         }
     }
 
+    public static boolean insertIntoTable(DATABASENAMES table, HashMap<String, String> updatePayload) {
+        if (table == null || table.getTableName() == null || table.getTableName().isEmpty()) {
+            return false;
+        }
+        String tableName = table.getTableName();
+        if (!updatePayload.keySet().containsAll(DATABASEMAPPING.get(tableName).keySet())) {
+            // Handle missing fields
+            System.err.println("Missing fields in updatePayload.");
+            return false;
+        }
+        StringBuilder columns = new StringBuilder();
+        StringBuilder values = new StringBuilder();
+
+        for (HashMap.Entry<String, String> entry : updatePayload.entrySet()) {
+            columns.append(entry.getKey()).append(",");
+            values.append("?").append(",");
+        }
+
+        columns.deleteCharAt(columns.length() - 1);
+        values.deleteCharAt(values.length() - 1);
+
+        String query = String.format("INSERT INTO %s (%s) VALUES (%s)", tableName, columns, values);
+        try (PreparedStatement preparedStatement = CONNECTION.prepareStatement(query)) {
+            int parameterIndex = 1;
+            for (String value : updatePayload.values()) {
+                preparedStatement.setString(parameterIndex++, value);
+            }
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean updateTableEntry(DATABASENAMES table, HashMap<String, String> search, HashMap<String, String> updatePayload) {
+        String tableName = table.getTableName();
+
+        if (tableName == null) {
+            // Handle invalid table name
+            return false;
+        }
+
+        StringBuilder setClause = new StringBuilder();
+        StringBuilder whereClause = new StringBuilder();
+
+        for (HashMap.Entry<String, String> entry : updatePayload.entrySet()) {
+            setClause.append(entry.getKey()).append(" = ?,");
+        }
+
+        setClause.deleteCharAt(setClause.length() - 1);
+
+        for (HashMap.Entry<String, String> entry : search.entrySet()) {
+            whereClause.append(entry.getKey()).append(" = ? AND ");
+        }
+
+        whereClause.delete(whereClause.length() - 5, whereClause.length()); // Remove the last "AND"
+
+        String query = String.format("UPDATE %s SET %s WHERE %s", tableName, setClause, whereClause);
+
+        try (PreparedStatement preparedStatement = CONNECTION.prepareStatement(query)) {
+            int parameterIndex = 1;
+            // Set values for SET clause
+            for (String value : updatePayload.values()) {
+                preparedStatement.setString(parameterIndex++, value);
+            }
+            // Set values for WHERE clause
+            for (String value : search.values()) {
+                preparedStatement.setString(parameterIndex++, value);
+            }
+            return preparedStatement.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     private static void setTablesNames() {
         DATABASEMAPPING.put(DATABASENAMES.USERS.getTableName(), DatabaseMapping.USERTABLEMAPPING);
         DATABASEMAPPING.put(DATABASENAMES.CUSTOMERS.getTableName(), DatabaseMapping.CUSTOMERTABLEMAPPING);
@@ -66,6 +143,7 @@ public class DatabaseManager {
             }
         }
     }
+
     private static boolean checkTable(String tableName) {
         System.out.println("Checking Table " + tableName);
         if (!doesTableExist(tableName)) {

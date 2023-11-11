@@ -5,16 +5,30 @@ import java.util.HashMap;
 public class DatabaseMapping {
     public static final HashMap<String,String> USERTABLEMAPPING = new HashMap<>();
     public static final HashMap<String,String> CUSTOMERTABLEMAPPING = new HashMap<>();
+    public static final HashMap<String,String> CONTRACTTABLEMAPPING = new HashMap<>();
+
     static {
         createUserTableMapping();
         createCustomerTableMapping();
+        createContractTableMapping();
     }
+
+    private static void createContractTableMapping() {
+        CONTRACTTABLEMAPPING.put("contract_id", "SERIAL PRIMARY KEY");
+        CONTRACTTABLEMAPPING.put("customer_id", "UUID");
+        CONTRACTTABLEMAPPING.put("start_date", "DATE");
+        CONTRACTTABLEMAPPING.put("end_date", "DATE");
+        CONTRACTTABLEMAPPING.put("version", "VARCHAR(50)");
+        CONTRACTTABLEMAPPING.put("volume", "INT");
+        CONTRACTTABLEMAPPING.put("responsible_user", "VARCHAR(255)");
+        CONTRACTTABLEMAPPING.put("FOREIGN KEY (customer_id)", "REFERENCES customers(customer_id)");
+    }
+
     private static void createCustomerTableMapping(){
-        CUSTOMERTABLEMAPPING.put("id","SERIAL PRIMARY KEY");
+        CUSTOMERTABLEMAPPING.put("customer_id","UUID PRIMARY KEY DEFAULT uuid_generate_v4()");
         CUSTOMERTABLEMAPPING.put("name","VARCHAR(255) UNIQUE NOT NULL");
         CUSTOMERTABLEMAPPING.put("addressdetaila","VARCHAR(255) UNIQUE NOT NULL");
         CUSTOMERTABLEMAPPING.put("addressdetailb","VARCHAR(255) UNIQUE NOT NULL");
-
     }
     private static void createUserTableMapping(){
         USERTABLEMAPPING.put("id", "SERIAL PRIMARY KEY");

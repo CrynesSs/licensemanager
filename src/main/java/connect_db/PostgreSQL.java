@@ -16,7 +16,7 @@ public class PostgreSQL {
             else System.out.println("DB connection failed");
 
         } catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
         return connection;
     }

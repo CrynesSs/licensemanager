@@ -23,7 +23,7 @@ bin/
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
-.idea/**
+**.idea/**
 *.iws
 *.iml
 *.ipr

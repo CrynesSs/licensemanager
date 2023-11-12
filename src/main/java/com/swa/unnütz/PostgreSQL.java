@@ -9,7 +9,7 @@ public class PostgreSQL {
 
         try{
             Class.forName("org.postgresql.Driver");
-            connection= DriverManager.getConnection("jdbc:postgresql://localhost:3306/postgres", "postgres","nNw3E2Z8n4JqMeSm");
+            connection= DriverManager.getConnection("jdbc:postgresql://cornelius.db.elephantsql.com:5432/cuedmzfq", "cuedmzfq","tslvvypLIOYieo_34e_U1ma0--i894HC");
 
             if (connection!=null)
                 System.out.println("DB connected");

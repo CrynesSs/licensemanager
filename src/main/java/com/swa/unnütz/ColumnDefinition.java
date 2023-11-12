@@ -1,4 +1,4 @@
-package com.swa.util;
+package com.swa.unnütz;
 
 public record ColumnDefinition(SQLDataType dataType, SQLConstraint... constraints) {
     public enum SQLDataType {

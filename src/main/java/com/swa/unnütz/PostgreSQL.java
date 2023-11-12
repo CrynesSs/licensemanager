@@ -1,4 +1,4 @@
-package com.swa.connect_db;
+package com.swa.unnütz;
 
 import java.sql.DriverManager;
 import java.sql.Connection;

@@ -1,13 +1,11 @@
-package com.swa.util;
-
-import com.swa.licensemanager.DatabaseMapping;
+package com.swa.unnütz;
 
 import java.sql.*;
 import java.util.HashMap;
 import java.util.UUID;
 
-import static com.swa.licensemanager.DatabaseManager.CONNECTION;
-import static com.swa.licensemanager.DatabaseMapping.DATABASEMAPPING;
+import static com.swa.unnütz.DatabaseManager.CONNECTION;
+import static com.swa.unnütz.DatabaseMapping.DATABASEMAPPING;
 
 public class DatabaseUtil {
     public static int getMaxVarcharLength(Connection connection, String tableName, String columnName) {

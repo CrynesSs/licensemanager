@@ -1,8 +1,6 @@
-package com.swa.licensemanager;
+package com.swa.unnütz;
 
 import com.google.common.collect.ImmutableMap;
-import com.swa.util.ColumnDefinition;
-import com.swa.util.SQLConstraint;
 
 import java.util.HashMap;
 

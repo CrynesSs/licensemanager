@@ -1,12 +1,10 @@
-package com.swa.licensemanager;
-
-import com.swa.util.ColumnDefinition;
+package com.swa.unnütz;
 
 import java.sql.*;
 import java.util.HashMap;
 
-import static com.swa.licensemanager.DatabaseMapping.DATABASEMAPPING;
-import static com.swa.connect_db.PostgreSQL.establishDBConnection;
+import static com.swa.unnütz.DatabaseMapping.DATABASEMAPPING;
+import static com.swa.unnütz.PostgreSQL.establishDBConnection;
 
 public class DatabaseManager {
     public static final Connection CONNECTION = establishDBConnection();
@@ -14,7 +12,7 @@ public class DatabaseManager {
     private DatabaseManager() {
 
     }
-    static void init() {
+    public static void init() {
         checkDatabaseValidity();
         validateTables();
     }

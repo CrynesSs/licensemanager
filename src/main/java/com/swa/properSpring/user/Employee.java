@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.util.Date;
+
 @Entity
 public class Employee {
     @Id
@@ -83,6 +85,16 @@ public class Employee {
     private String phone1;
     private String phone2;
 
+    public java.util.Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    private java.util.Date createdOn;
+
     public String getRole() {
         return role;
     }
@@ -107,6 +119,7 @@ public class Employee {
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.role = role;
+        this.createdOn = new java.util.Date();
     }
 
     public void setId(Long id) {

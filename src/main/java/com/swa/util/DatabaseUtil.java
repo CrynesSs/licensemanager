@@ -1,4 +1,4 @@
-package util;
+package com.swa.util;
 
 import com.swa.licensemanager.DatabaseMapping;
 

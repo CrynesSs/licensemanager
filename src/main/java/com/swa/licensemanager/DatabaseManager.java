@@ -1,12 +1,12 @@
 package com.swa.licensemanager;
 
-import util.ColumnDefinition;
+import com.swa.util.ColumnDefinition;
 
 import java.sql.*;
 import java.util.HashMap;
 
 import static com.swa.licensemanager.DatabaseMapping.DATABASEMAPPING;
-import static connect_db.PostgreSQL.establishDBConnection;
+import static com.swa.connect_db.PostgreSQL.establishDBConnection;
 
 public class DatabaseManager {
     public static final Connection CONNECTION = establishDBConnection();

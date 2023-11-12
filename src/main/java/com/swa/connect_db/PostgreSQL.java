@@ -1,4 +1,4 @@
-package connect_db;
+package com.swa.connect_db;
 
 import java.sql.DriverManager;
 import java.sql.Connection;

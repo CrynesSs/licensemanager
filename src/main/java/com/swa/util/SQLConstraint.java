@@ -1,4 +1,4 @@
-package util;
+package com.swa.util;
 
 public record SQLConstraint(String name, int length) {
     public static final SQLConstraint PRIMARY_KEY = new SQLConstraint("PRIMARY KEY", -1);

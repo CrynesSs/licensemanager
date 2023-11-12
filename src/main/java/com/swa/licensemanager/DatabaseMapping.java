@@ -1,45 +1,83 @@
 package com.swa.licensemanager;
 
+import com.google.common.collect.ImmutableMap;
+import util.ColumnDefinition;
+import util.SQLConstraint;
+
 import java.util.HashMap;
 
 public class DatabaseMapping {
-    public static final HashMap<String,String> USERTABLEMAPPING = new HashMap<>();
-    public static final HashMap<String,String> CUSTOMERTABLEMAPPING = new HashMap<>();
-    public static final HashMap<String,String> CONTRACTTABLEMAPPING = new HashMap<>();
+    public static ImmutableMap<String, HashMap<String, ColumnDefinition>> DATABASEMAPPING;
+    private static final HashMap<String, ColumnDefinition> USERTABLEMAPPING = new HashMap<>();
+    private static final HashMap<String, ColumnDefinition> CUSTOMERTABLEMAPPING = new HashMap<>();
+    private static final HashMap<String, ColumnDefinition> CONTRACTTABLEMAPPING = new HashMap<>();
 
     static {
         createUserTableMapping();
         createCustomerTableMapping();
         createContractTableMapping();
+
+
+        setTables();
+
     }
+    // Map<Tablename,Tablefields>
+
+    public enum TABLENAMES {
+        USERS("users"),
+        CUSTOMERS("customers"),
+        CONTRACTS("contracts");
+
+        public String getTableName() {
+            return tableName;
+        }
+
+        private final String tableName;
+
+        TABLENAMES(String tableName) {
+            this.tableName = tableName;
+        }
+    }
+
+    private static void setTables() {
+        DatabaseMapping.DATABASEMAPPING = new ImmutableMap.Builder<String,HashMap<String,ColumnDefinition>>()
+                .put(TABLENAMES.USERS.getTableName(), DatabaseMapping.USERTABLEMAPPING)
+                .put(TABLENAMES.CUSTOMERS.getTableName(), DatabaseMapping.CUSTOMERTABLEMAPPING)
+                .put(TABLENAMES.CONTRACTS.getTableName(), DatabaseMapping.CONTRACTTABLEMAPPING)
+                .build();
+        //DATABASEMAPPING.put(TABLENAMES.USERS.getTableName(), DatabaseMapping.USERTABLEMAPPING);
+        //DATABASEMAPPING.put(TABLENAMES.CUSTOMERS.getTableName(), DatabaseMapping.CUSTOMERTABLEMAPPING);
+        //DATABASEMAPPING.put(TABLENAMES.CONTRACTS.getTableName(), DatabaseMapping.CONTRACTTABLEMAPPING);
+    }
+
 
     private static void createContractTableMapping() {
-        CONTRACTTABLEMAPPING.put("contract_id", "SERIAL PRIMARY KEY");
-        CONTRACTTABLEMAPPING.put("customer_id", "UUID");
-        CONTRACTTABLEMAPPING.put("start_date", "DATE");
-        CONTRACTTABLEMAPPING.put("end_date", "DATE");
-        CONTRACTTABLEMAPPING.put("version", "VARCHAR(50)");
-        CONTRACTTABLEMAPPING.put("volume", "INT");
-        CONTRACTTABLEMAPPING.put("responsible_user", "VARCHAR(255)");
-        CONTRACTTABLEMAPPING.put("FOREIGN KEY (customer_id)", "REFERENCES customers(customer_id)");
+        CONTRACTTABLEMAPPING.put("contract_id",new ColumnDefinition(ColumnDefinition.SQLDataType.SERIALKEY,SQLConstraint.SERIAL, SQLConstraint.PRIMARY_KEY));
+        CONTRACTTABLEMAPPING.put("customer_id", new ColumnDefinition(ColumnDefinition.SQLDataType.UUID));
+        CONTRACTTABLEMAPPING.put("start_date", new ColumnDefinition(ColumnDefinition.SQLDataType.DATE));
+        CONTRACTTABLEMAPPING.put("end_date", new ColumnDefinition(ColumnDefinition.SQLDataType.DATE));
+        CONTRACTTABLEMAPPING.put("version", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(50)));
+        CONTRACTTABLEMAPPING.put("volume", new ColumnDefinition(ColumnDefinition.SQLDataType.INT));
+        CONTRACTTABLEMAPPING.put("responsible_user", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255)));
     }
 
-    private static void createCustomerTableMapping(){
-        CUSTOMERTABLEMAPPING.put("customer_id","UUID PRIMARY KEY DEFAULT uuid_generate_v4()");
-        CUSTOMERTABLEMAPPING.put("name","VARCHAR(255) UNIQUE NOT NULL");
-        CUSTOMERTABLEMAPPING.put("addressdetaila","VARCHAR(255) UNIQUE NOT NULL");
-        CUSTOMERTABLEMAPPING.put("addressdetailb","VARCHAR(255) UNIQUE NOT NULL");
+    private static void createCustomerTableMapping() {
+        CUSTOMERTABLEMAPPING.put("customer_id", new ColumnDefinition(ColumnDefinition.SQLDataType.UUID,SQLConstraint.PRIMARY_KEY,SQLConstraint.DEFAULT));
+        CUSTOMERTABLEMAPPING.put("name",new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.UNIQUE,SQLConstraint.NOT_NULL));
+        CUSTOMERTABLEMAPPING.put("addressdetaila", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.UNIQUE,SQLConstraint.NOT_NULL));
+        CUSTOMERTABLEMAPPING.put("addressdetailb", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.UNIQUE,SQLConstraint.NOT_NULL));
     }
-    private static void createUserTableMapping(){
-        USERTABLEMAPPING.put("id", "SERIAL PRIMARY KEY");
-        USERTABLEMAPPING.put("username", "VARCHAR(50) UNIQUE NOT NULL");
-        USERTABLEMAPPING.put("password", "VARCHAR(255) NOT NULL");
-        USERTABLEMAPPING.put("email", "VARCHAR(100) UNIQUE NOT NULL");
-        USERTABLEMAPPING.put("company", "VARCHAR(100)");
-        USERTABLEMAPPING.put("first_name", "VARCHAR(50)");
-        USERTABLEMAPPING.put("last_name", "VARCHAR(50)");
-        USERTABLEMAPPING.put("phone1", "VARCHAR(20)");
-        USERTABLEMAPPING.put("phone2", "VARCHAR(20)");
+
+    private static void createUserTableMapping() {
+        USERTABLEMAPPING.put("id", new ColumnDefinition(ColumnDefinition.SQLDataType.SERIALKEY,SQLConstraint.SERIAL,SQLConstraint.PRIMARY_KEY));
+        USERTABLEMAPPING.put("username", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.UNIQUE,SQLConstraint.NOT_NULL));
+        USERTABLEMAPPING.put("password", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.NOT_NULL));
+        USERTABLEMAPPING.put("email", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.UNIQUE,SQLConstraint.NOT_NULL));
+        USERTABLEMAPPING.put("company", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.NOT_NULL));
+        USERTABLEMAPPING.put("first_name", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.NOT_NULL));
+        USERTABLEMAPPING.put("last_name", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.NOT_NULL));
+        USERTABLEMAPPING.put("phone1", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.UNIQUE,SQLConstraint.NOT_NULL));
+        USERTABLEMAPPING.put("phone2", new ColumnDefinition(ColumnDefinition.SQLDataType.VARCHAR,SQLConstraint.VARCHAR(255),SQLConstraint.NOT_NULL));
     }
 
 }

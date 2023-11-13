@@ -1,42 +1,80 @@
-.App {
-  text-align: center;
+/* App.css */
+
+.client-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.client-list-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width as needed */
+    background: darkgreen;
+}
+.client-list-header .client-field{
+    color: red;
+}
+.client-card {
+    background-color: purple;
+    border: 1px solid #ccc;
+    display: flex;
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width as needed */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.client-field {
+    font-size: 18px;
+    padding: 10px;
+    width: 33.33%;
+    color: aqua;
+}
+.btn-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.client-card .btn {
+    display: block;
+    height: 35px;
+    color: black;
+    border-radius: 12px;
+    width: 150px;
+}
+.client-card .btn-primary {
+    background-color: #007bff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.client-card .btn-danger {
+    background-color: #ff4444;
+}
+.navbar {
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* Text color */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Customize the brand link styles */
+.navbar-brand {
+    color: #ffffff; /* Brand text color */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Style the brand link on hover */
+.navbar-brand:hover {
+    color: #ffffff; /* Hover text color */
 }
 
-.App-link {
-  color: #61dafb;
+/* Customize the navbar toggler color */
+.navbar-toggler-icon {
+    background-color: #ffffff; /* Toggler icon color */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style the navbar links */
+.navbar-nav a {
+    color: #ffffff; /* Navbar links text color */
 }
 
-.container, .container-fluid {
-  margin-top: 20px;
+/* Style the navbar links on hover */
+.navbar-nav a:hover {
+    color: #ffffff; /* Navbar links hover text color */
 }

@@ -1,25 +1,21 @@
-import {Component} from "react";
+import React, {useState} from "react";
 import {Navbar, NavbarBrand} from 'reactstrap';
 import {Link} from "react-router-dom";
 
-export default class AppNavbar extends Component {
-    constructor(props: {} | Readonly<{}>) {
-        super(props);
-        this.state = {isOpen: false};
-        this.toggle = this.toggle.bind(this);
-    }
+const AppNavbar: React.FC = () => {
+    const [isOpen, setIsOpen] = useState(false);
 
-    toggle() {
+    const toggle = () => {
+        setIsOpen((prev) => !prev);
+    };
 
-        this.setState({
-            // @ts-ignore
-            isOpen: !this.state.isOpen
-        });
-    }
+    return (
+        <Navbar color="dark" dark expand="md">
+            <NavbarBrand tag={Link} to="/" onClick={toggle}>
+                Home
+            </NavbarBrand>
+        </Navbar>
+    );
+};
 
-    render() {
-        return <Navbar color="dark" dark expand="md">
-            <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
-        </Navbar>;
-    }
-}
+export default AppNavbar;

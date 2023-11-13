@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, ButtonGroup, Container} from 'reactstrap';
 import {Link, useNavigate} from 'react-router-dom';
-import AppNavbar from "../../AppNavBar";
+import AppNavbar from "../app/AppNavBar";
 import EditClientForm from "./EditClientForm";
 export interface Client {
     id: React.Key;

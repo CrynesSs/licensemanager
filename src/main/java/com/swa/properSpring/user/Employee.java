@@ -1,13 +1,17 @@
 package com.swa.properSpring.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Employee {
+public class Employee implements UserDetails {
     @Id
     @GeneratedValue
     private Long id;
@@ -16,66 +20,88 @@ public class Employee {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "employee_roles", joinColumns = @JoinColumn(name = "employee_id"))
+    @Column(name = "role")
+    private Set<String> roles = new HashSet<>();
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        for (String role : roles) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        }
+        return authorities;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+
 
     public String getCompany() {
         return company;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
+
 
     public String getFirst_name() {
         return first_name;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
+
 
     public String getLast_name() {
         return last_name;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
+
 
     public String getPhone1() {
         return phone1;
     }
 
-    public void setPhone1(String phone1) {
-        this.phone1 = phone1;
-    }
+
 
     public String getPhone2() {
         return phone2;
     }
 
-    public void setPhone2(String phone2) {
-        this.phone2 = phone2;
+    public java.util.Date getCreatedOn() {
+        return createdOn;
     }
-
     private String username;
     private String password;
     private String email;
@@ -84,32 +110,14 @@ public class Employee {
     private String last_name;
     private String phone1;
     private String phone2;
-
-    public java.util.Date getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
-    }
-
     private java.util.Date createdOn;
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    private String role;
 
     protected Employee(){
 
     }
 
-    public Employee(String username, String password, String email, String company, String first_name, String last_name, String phone1, String phone2, String role) {
+
+    public Employee(String username, String password, String email, String company, String first_name, String last_name, String phone1, String phone2, HashSet<String> roles) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -118,8 +126,59 @@ public class Employee {
         this.last_name = last_name;
         this.phone1 = phone1;
         this.phone2 = phone2;
-        this.role = role;
+        this.roles = roles;
         this.createdOn = new java.util.Date();
+    }
+    public static class Builder {
+
+        private final Employee employee;
+
+        public Builder(String username, String password) {
+            employee = new Employee();
+            employee.username = username;
+            employee.password = password;
+            employee.createdOn = new Date();
+            employee.roles = new HashSet<>();
+        }
+
+        public Builder id(Long id) {
+            employee.id = id;
+            return this;
+        }
+
+        public Builder roles(Set<String> roles) {
+            employee.roles = new HashSet<>(roles);
+            return this;
+        }
+
+        public Builder addRole(String role) {
+            employee.roles.add(role);
+            return this;
+        }
+        public Builder addEmail(String email){
+            employee.email = email;
+            return this;
+        }
+        public Builder addCompany(String company){
+            employee.company = company;
+            return this;
+        }
+        public Builder addPhone(String phoneNumber){
+            if(employee.phone1 == null){
+                employee.phone1 = phoneNumber;
+            }else{
+                employee.phone2 = phoneNumber;
+            }
+            return this;
+        }
+        public Builder addName(String firstName,String lastName){
+            employee.first_name = firstName;
+            employee.last_name = lastName;
+            return this;
+        }
+        public Employee build() {
+            return employee;
+        }
     }
 
     public void setId(Long id) {

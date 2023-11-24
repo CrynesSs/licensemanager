@@ -11,13 +11,32 @@ import java.util.UUID;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private UUID customer_id;
+    private String addressDetailA;
+    private String addressDetailB;
 
-    public void setId(UUID id) {
-        this.id = id;
+
+    public void setCustomer_id(UUID customer_id) {
+        this.customer_id = customer_id;
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getCustomer_id() {
+        return customer_id;
+    }
+
+    public String getAddressDetailA() {
+        return addressDetailA;
+    }
+
+    public void setAddressDetailA(String addressDetailA) {
+        this.addressDetailA = addressDetailA;
+    }
+
+    public String getAddressDetailB() {
+        return addressDetailB;
+    }
+
+    public void setAddressDetailB(String addressDetailB) {
+        this.addressDetailB = addressDetailB;
     }
 }

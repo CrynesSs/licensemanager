@@ -1,6 +1,7 @@
 package com.swa.properSpring.user;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -11,9 +12,11 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class EmployeeController {
 
+    private final AuthenticationManager authenticationManager;
     private final EmployeeRepository userRepository;
 
-    public EmployeeController(EmployeeRepository repository){
+    public EmployeeController(AuthenticationManager authenticationManager, EmployeeRepository repository){
+        this.authenticationManager = authenticationManager;
         this.userRepository = repository;
     }
     @GetMapping

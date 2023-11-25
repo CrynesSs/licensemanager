@@ -10,7 +10,7 @@ const LoginPage:React.FC = () => {
     const [error, setError] = useState('');
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://localhost/api/login', {
+            const response = await axios.post('http://localhost/api/perform_login', {
                 username: username,
                 password: password,
             });
@@ -23,6 +23,8 @@ const LoginPage:React.FC = () => {
 
             // Successful login
             setError("");
+            // Redirect or perform other actions after successful login
+            //window.location.href = '/clients';
             alert('Login successful!');
         } catch (error) {
             // Failed login

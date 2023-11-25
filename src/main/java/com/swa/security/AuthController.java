@@ -22,6 +22,7 @@ public class AuthController {
     }
 
     @GetMapping("/authenticate")
+    @CrossOrigin
     public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
         // Authenticate the user
         Authentication authentication = authenticationManager.authenticate(

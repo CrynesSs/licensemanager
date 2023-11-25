@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,8 +17,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private final JwtAuthenticationFilter filter;
 
-    public SecurityConfig(JwtAuthenticationFilter filter) {
+    private final CorsConfig corsConfig;
+
+    public SecurityConfig(JwtAuthenticationFilter filter, CorsConfig corsConfig) {
         this.filter = filter;
+        this.corsConfig = corsConfig;
     }
 
     @Bean
@@ -25,16 +29,18 @@ public class SecurityConfig {
         http
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/api/perform_login")
+                        .requestMatchers("/")
                         .permitAll()
-                        .anyRequest()
-                        .authenticated()
+                        .requestMatchers("/api/**")
+                        .hasAuthority("ROLE_USER")
+                        .requestMatchers("/api_admin/**")
+                        .hasAuthority("ROLE_ADMIN")
                 )
                 .formLogin((form) -> form
-                        .loginPage("/")
-                        .loginProcessingUrl("/perform_login")
+                        .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/clients")
                         .failureUrl("/error-page?error=true")
+                        .permitAll()
                 )
                 .csrf(Customizer.withDefaults())
                 .logout(LogoutConfigurer::permitAll);

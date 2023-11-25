@@ -45,11 +45,11 @@ public class Employee implements UserDetails {
     }
 
 
-
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "employee_roles", joinColumns = @JoinColumn(name = "employee_id"))
     @Column(name = "role")
     private Set<String> roles = new HashSet<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
@@ -64,11 +64,9 @@ public class Employee implements UserDetails {
     }
 
 
-
     public String getEmail() {
         return email;
     }
-
 
 
     public String getCompany() {
@@ -76,11 +74,9 @@ public class Employee implements UserDetails {
     }
 
 
-
     public String getFirst_name() {
         return first_name;
     }
-
 
 
     public String getLast_name() {
@@ -88,11 +84,9 @@ public class Employee implements UserDetails {
     }
 
 
-
     public String getPhone1() {
         return phone1;
     }
-
 
 
     public String getPhone2() {
@@ -102,6 +96,7 @@ public class Employee implements UserDetails {
     public java.util.Date getCreatedOn() {
         return createdOn;
     }
+
     private String username;
     private String password;
     private String email;
@@ -112,7 +107,7 @@ public class Employee implements UserDetails {
     private String phone2;
     private java.util.Date createdOn;
 
-    protected Employee(){
+    protected Employee() {
 
     }
 
@@ -129,6 +124,11 @@ public class Employee implements UserDetails {
         this.roles = roles;
         this.createdOn = new java.util.Date();
     }
+
+    public void setPassword(String encodedPassword) {
+        this.password = encodedPassword;
+    }
+
     public static class Builder {
 
         private final Employee employee;
@@ -155,27 +155,32 @@ public class Employee implements UserDetails {
             employee.roles.add(role);
             return this;
         }
-        public Builder addEmail(String email){
+
+        public Builder addEmail(String email) {
             employee.email = email;
             return this;
         }
-        public Builder addCompany(String company){
+
+        public Builder addCompany(String company) {
             employee.company = company;
             return this;
         }
-        public Builder addPhone(String phoneNumber){
-            if(employee.phone1 == null){
+
+        public Builder addPhone(String phoneNumber) {
+            if (employee.phone1 == null) {
                 employee.phone1 = phoneNumber;
-            }else{
+            } else {
                 employee.phone2 = phoneNumber;
             }
             return this;
         }
-        public Builder addName(String firstName,String lastName){
+
+        public Builder addName(String firstName, String lastName) {
             employee.first_name = firstName;
             employee.last_name = lastName;
             return this;
         }
+
         public Employee build() {
             return employee;
         }

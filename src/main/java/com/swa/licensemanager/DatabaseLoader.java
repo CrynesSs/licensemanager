@@ -2,6 +2,7 @@ package com.swa.licensemanager;
 
 import com.swa.properSpring.user.Employee;
 import com.swa.properSpring.user.EmployeeRepository;
+import com.swa.properSpring.user.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -11,10 +12,11 @@ import java.util.HashSet;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
-    private final EmployeeRepository repository;
+
+    private final EmployeeService service;
     @Autowired
-    public DatabaseLoader(EmployeeRepository repository) {
-        this.repository = repository;
+    public DatabaseLoader(EmployeeService service) {
+        this.service = service;
     }
     @Override
     public void run(String... args) {
@@ -24,8 +26,8 @@ public class DatabaseLoader implements CommandLineRunner {
         employee1.addEmail("bilbo@middle-earth.fm");
         employee1.addPhone("13376258238").addPhone("1238741122384");
         employee1.addRole("ADMIN");
-        this.repository.save(employee1.build());
+        service.saveOrUpdateEntity(employee1.build());
 
-        this.repository.save(new Employee("Frodo_Baggins69XXX", "burglar","frodo@middle-earth.fm","Hobbits.inc","Frodo","Baggins","13376969555","kek", new HashSet<>(Collections.singleton("ADMIN"))));
+        service.saveOrUpdateEntity(new Employee("Frodo_Baggins69XXX", "burglar","frodo@middle-earth.fm","Hobbits.inc","Frodo","Baggins","13376969555","kek", new HashSet<>(Collections.singleton("ADMIN"))));
     }
 }

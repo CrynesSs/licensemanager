@@ -10,9 +10,14 @@ const LoginPage:React.FC = () => {
     const [error, setError] = useState('');
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/login', {
+            const response = await axios.post('http://localhost:8080/authenticate', {
                 username: username,
                 password: password,
+            },{
+                withCredentials:true,
+                headers:{
+                    'Content-Type':'application/x-www-form-urlencoded',
+                }
             });
             console.log(response)
             // Assuming your backend returns a token in the response

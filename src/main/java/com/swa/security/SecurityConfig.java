@@ -37,15 +37,17 @@ public class SecurityConfig {
                         .hasAuthority("ROLE_ADMIN")
                 )
                 .formLogin((form) -> form
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/clients")
+                        .loginProcessingUrl("/authenticate")
+                        .defaultSuccessUrl("/clients",true)
                         .failureUrl("/error-page?error=true")
                         .permitAll()
                 )
+                .anonymous(AbstractHttpConfigurer::disable)
                 .csrf(Customizer.withDefaults())
                 .logout(LogoutConfigurer::permitAll);
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

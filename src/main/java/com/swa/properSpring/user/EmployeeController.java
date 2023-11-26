@@ -1,7 +1,6 @@
 package com.swa.properSpring.user;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -12,11 +11,9 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class EmployeeController {
 
-    private final AuthenticationManager authenticationManager;
     private final EmployeeRepository userRepository;
 
-    public EmployeeController(AuthenticationManager authenticationManager, EmployeeRepository repository){
-        this.authenticationManager = authenticationManager;
+    public EmployeeController(EmployeeRepository repository){
         this.userRepository = repository;
     }
     @GetMapping
@@ -36,10 +33,6 @@ public class EmployeeController {
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateClient(@PathVariable Long id, @RequestBody Employee client) {
         Employee currentClient = userRepository.findById(id).orElseThrow(RuntimeException::new);
-       // currentClient.setName(client.getName());
-        //currentClient.setEmail(client.getEmail());
-       // currentClient = clientRepository.save(client);
-
         return ResponseEntity.ok(currentClient);
     }
     @DeleteMapping("/{id}")

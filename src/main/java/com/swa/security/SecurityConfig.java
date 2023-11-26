@@ -2,8 +2,6 @@ package com.swa.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,11 +19,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
     private final JwtAuthenticationFilter filter;
 
-    private final CorsConfig corsConfig;
-
-    public SecurityConfig(JwtAuthenticationFilter filter, CorsConfig corsConfig) {
+    public SecurityConfig(JwtAuthenticationFilter filter) {
         this.filter = filter;
-        this.corsConfig = corsConfig;
     }
 
     @Bean
@@ -39,16 +34,17 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/api_admin/**"))
                         .hasAuthority("ROLE_ADMIN")
                 )
+                //Add JWT Filter to check token before Username and Password
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
+                //Allow Login via Formdata from outside.
                 .formLogin((form) -> form
-                        .loginProcessingUrl("/authenticate")
-                        .defaultSuccessUrl("/clients",true)
+                        .loginProcessingUrl("/api/authenticate")
+                        .defaultSuccessUrl("/api/home",true)
                         .failureUrl("/error-page?error=true")
                         .permitAll()
                 )
                 .httpBasic(withDefaults())
                 .anonymous(AbstractHttpConfigurer::disable)
-                .csrf(AbstractHttpConfigurer::disable)
                 .logout(LogoutConfigurer::permitAll);
         return http.build();
     }

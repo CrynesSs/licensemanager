@@ -4,23 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12aa8b28-a261-4d65-bba6-428583792edc" name="Changes" comment="Added Table Creation Functionality">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+    <list default="true" id="12aa8b28-a261-4d65-bba6-428583792edc" name="Changes" comment="Cors Issue still and now auth a bit">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/DatabaseMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/DatabaseMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/LicensemanagerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/LicensemanagerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/http-service.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/login/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/http-common.js.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/DatabaseLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/DatabaseLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/EmployeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/security/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/security/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/security/CustomAuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/security/CustomAuthenticationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -39,6 +52,17 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="licensemanager" type="f1a62948:ProjectNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="licensemanager" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="licensemanager" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -49,7 +73,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Record" />
+        <option value="CSS File" />
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -58,6 +88,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/my-react-app/package.json" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -69,33 +102,68 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Leon/OneDrive/Uni/Semester 4/Softwarearchitektur/Projekt/swa&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;31cc011875e305374bb90746bc003c62&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.nodejs.core.library.configured.version": "20.5.1",
+    "javascript.nodejs.core.library.typings.version": "20.5.1",
+    "last_opened_file_path": "C:/Users/Julian/IdeaProjects/swa/src/main/resources/static",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "7e29f6e93ceec9e240fc69378a21790f",
+    "ts.external.directory.path": "C:\\Users\\Julian\\IdeaProjects\\swa\\my-react-app\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Julian\IdeaProjects\swa\src\main\resources\templates" />
+      <recent name="C:\Users\Julian\IdeaProjects\swa\src\main\resources\static" />
+      <recent name="C:\Users\Julian\IdeaProjects\swa\src\main\resources" />
+      <recent name="C:\Users\Julian\IdeaProjects\swa\my-react-app\src\components\app" />
+      <recent name="C:\Users\Julian\IdeaProjects\swa\my-react-app\src\components\home" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.swa.licensemanager" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.LicensemanagerApplication">
+    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="2" requestIdentifier="#2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="3" requestIdentifier="#3" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="4" requestIdentifier="#4" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="swa" />
       <method v="2">
@@ -111,11 +179,30 @@
     </configuration>
     <configuration name="LicensemanagerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="licensemanager.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.swa.licensemanager.LicensemanagerApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.swa.LicensemanagerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/my-react-app/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.generated-requests | #4" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="HTTP Request.generated-requests | #2" />
+        <item itemvalue="HTTP Request.generated-requests | #3" />
+        <item itemvalue="HTTP Request.generated-requests | #1" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -127,7 +214,17 @@
       <updated>1699637562651</updated>
       <workItem from="1699637563765" duration="953000" />
       <workItem from="1699711802477" duration="6414000" />
-      <workItem from="1699720355542" duration="3665000" />
+      <workItem from="1699720355542" duration="4290000" />
+      <workItem from="1699724975005" duration="31534000" />
+      <workItem from="1699839334548" duration="12507000" />
+      <workItem from="1699881505943" duration="31000" />
+      <workItem from="1699881550766" duration="740000" />
+      <workItem from="1699882316432" duration="2592000" />
+      <workItem from="1700166237173" duration="1135000" />
+      <workItem from="1700411505918" duration="12047000" />
+      <workItem from="1700731147226" duration="1026000" />
+      <workItem from="1700829891961" duration="21112000" />
+      <workItem from="1701015564764" duration="9943000" />
     </task>
     <task id="LOCAL-00001" summary="Added Table Creation Functionality">
       <created>1699719982477</created>
@@ -136,7 +233,154 @@
       <option name="project" value="LOCAL" />
       <updated>1699719982477</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added TablCleanup and added Contract Table">
+      <created>1699724421562</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1699724421562</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Insert and Update functionality with search queries and data dynamically assigned">
+      <created>1699726121125</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699726121125</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactored SQL Constraint and added Column Definitions">
+      <created>1699796988934</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699796988934</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refactored SQL Constraint and added Column Definitions">
+      <created>1699805598008</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699805598008</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Refactored SQL Constraint and added Column Definitions">
+      <created>1699806227238</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699806227238</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Proper Spring i guess">
+      <created>1699811513868</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699811513868</updated>
+    </task>
+    <task id="LOCAL-00008" summary="First proper Spring Boot DAtabase whatever Nightmare">
+      <created>1699814132295</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1699814132295</updated>
+    </task>
+    <task id="LOCAL-00009" summary="First proper Spring Boot DAtabase whatever Nightmare">
+      <created>1699815166536</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699815166536</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Update 1">
+      <created>1699817697214</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699817697214</updated>
+    </task>
+    <task id="LOCAL-00011" summary="React App setup">
+      <created>1699832982511</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1699832982511</updated>
+    </task>
+    <task id="LOCAL-00012" summary="removed baggage">
+      <created>1699833035440</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1699833035440</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Think i got it">
+      <created>1699846114040</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1699846114040</updated>
+    </task>
+    <task id="LOCAL-00014" summary="I regret everything">
+      <created>1699853472913</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1699853472913</updated>
+    </task>
+    <task id="LOCAL-00015" summary="last for now">
+      <created>1699855134386</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1699855134386</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Ready for Development">
+      <created>1699884819490</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1699884819490</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Ready for Development 2.0">
+      <created>1699884890389</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1699884890389</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Implemented basic security maybe. Did not test yet but changes getting big">
+      <created>1700836721816</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1700836721816</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Minor additions to security">
+      <created>1700883380089</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1700883380089</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Looking good. Only Cors Missing">
+      <created>1700891611294</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1700891611294</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Cors Issue still">
+      <created>1700892622420</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1700892622420</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Cors Issue still and now auth a bit">
+      <created>1700895894573</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1700895894573</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +411,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Table Creation Functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Table Creation Functionality" />
+    <MESSAGE value="Added TablCleanup and added Contract Table" />
+    <MESSAGE value="Added Insert and Update functionality with search queries and data dynamically assigned" />
+    <MESSAGE value="Refactored SQL Constraint and added Column Definitions" />
+    <MESSAGE value="Proper Spring i guess" />
+    <MESSAGE value="First proper Spring Boot DAtabase whatever Nightmare" />
+    <MESSAGE value="Update 1" />
+    <MESSAGE value="React App setup" />
+    <MESSAGE value="removed baggage" />
+    <MESSAGE value="Think i got it" />
+    <MESSAGE value="I regret everything" />
+    <MESSAGE value="last for now" />
+    <MESSAGE value="Ready for Development" />
+    <MESSAGE value="Ready for Development 2.0" />
+    <MESSAGE value="Implemented basic security maybe. Did not test yet but changes getting big" />
+    <MESSAGE value="Minor additions to security" />
+    <MESSAGE value="Looking good. Only Cors Missing" />
+    <MESSAGE value="Cors Issue still" />
+    <MESSAGE value="Cors Issue still and now auth a bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cors Issue still and now auth a bit" />
   </component>
 </project>

@@ -10,7 +10,7 @@ const LoginPage:React.FC = () => {
     const [error, setError] = useState('');
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://127.0.0.1:8080/authenticate', {
+            const response = await axios.post('http://localhost:8080/api/authenticate', {
                 username: username,
                 password: password,
             },{

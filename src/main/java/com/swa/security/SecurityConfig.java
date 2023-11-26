@@ -28,9 +28,17 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(new AntPathRequestMatcher("/"))
-                        .permitAll()
+                        .hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/api/**"))
                         .hasAuthority("ROLE_USER")
+                        .requestMatchers(
+                                new AntPathRequestMatcher("/js/**"),
+                                new AntPathRequestMatcher("/css/**"),
+                                new AntPathRequestMatcher("/icon/**"),
+                                new AntPathRequestMatcher("/media/**"),
+                                new AntPathRequestMatcher("/manifest.json")
+                        )
+                        .permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api_admin/**"))
                         .hasAuthority("ROLE_ADMIN")
                 )
@@ -39,7 +47,7 @@ public class SecurityConfig {
                 //Allow Login via Formdata from outside.
                 .formLogin((form) -> form
                         .loginProcessingUrl("/api/authenticate")
-                        .defaultSuccessUrl("/api/home",true)
+                        .defaultSuccessUrl("/", true)
                         .failureUrl("/error-page?error=true")
                         .permitAll()
                 )

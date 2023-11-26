@@ -3,11 +3,13 @@ import React, {useState} from 'react';
 
 import './loginstyle.css'
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const LoginPage:React.FC =  () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
     const handleLogin = async () => {
         try {
             const response = await axios.post('http://localhost:8080/authenticate', {
@@ -20,6 +22,7 @@ const LoginPage:React.FC =  () => {
                 }
             })
             console.log(response)
+            navigate("/home")
         } catch (error) {
             // Failed login
             console.log(error)

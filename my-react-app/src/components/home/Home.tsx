@@ -1,14 +1,14 @@
 import React from "react";
 import AppNavbar from "../app/AppNavBar";
-import {Button, Container} from "reactstrap";
-import {Link} from "react-router-dom";
+import {Container} from "reactstrap";
+import ClientList from "../usergui/ClientList";
 
-const Home:React.FC = ()=>{
+const Home: React.FC = () => {
     return (
         <div>
             <AppNavbar/>
             <Container fluid>
-                <Button color="link"><Link to="/clients">Clients</Link></Button>
+                <ClientList/>
             </Container>
         </div>
     );

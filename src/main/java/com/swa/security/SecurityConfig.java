@@ -37,7 +37,7 @@ public class SecurityConfig {
                         .successHandler(((request, response, authentication) -> {
                             //send JWT here
                         }))
-                        .successForwardUrl("/api/home")
+                        .defaultSuccessUrl("/api/home")
                         .failureHandler((request, response, exception) -> {
                             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                             response.getWriter().write("{\"success\": false, \"message\": \"" + exception.getMessage() + "\"}");

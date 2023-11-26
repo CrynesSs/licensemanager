@@ -1,5 +1,6 @@
 package com.swa.security;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,7 +10,6 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -17,12 +17,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final JwtAuthenticationFilter filter;
-
-    public SecurityConfig(JwtAuthenticationFilter filter) {
-        this.filter = filter;
-    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -31,24 +25,24 @@ public class SecurityConfig {
                         .hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/api/**"))
                         .hasAuthority("ROLE_USER")
-                        .requestMatchers(
-                                new AntPathRequestMatcher("/js/**"),
-                                new AntPathRequestMatcher("/css/**"),
-                                new AntPathRequestMatcher("/icon/**"),
-                                new AntPathRequestMatcher("/media/**"),
-                                new AntPathRequestMatcher("/manifest.json")
-                        )
-                        .permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api_admin/**"))
                         .hasAuthority("ROLE_ADMIN")
                 )
                 //Add JWT Filter to check token before Username and Password
-                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 //Allow Login via Formdata from outside.
+                .cors(withDefaults())
+                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin((form) -> form
-                        .loginProcessingUrl("/api/authenticate")
-                        .defaultSuccessUrl("/", true)
-                        .failureUrl("/error-page?error=true")
+                        .loginProcessingUrl("/authenticate")
+                        .successHandler(((request, response, authentication) -> {
+                            //send JWT here
+                        }))
+                        .successForwardUrl("/api/home")
+                        .failureHandler((request, response, exception) -> {
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.getWriter().write("{\"success\": false, \"message\": \"" + exception.getMessage() + "\"}");
+                            response.setContentType("application/json");
+                        })
                         .permitAll()
                 )
                 .httpBasic(withDefaults())

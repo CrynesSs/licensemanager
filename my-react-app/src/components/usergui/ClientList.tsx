@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, ButtonGroup, Container} from 'reactstrap';
 import {Link, useNavigate} from 'react-router-dom';
 import EditClientForm from "./EditClientForm";
+import axios from "axios";
 
 export interface Client {
     id: React.Key;
@@ -15,16 +16,17 @@ const ClientList: React.FC = () => {
         const [editClient, setEditClient] = useState<Client | null>(null);
         useEffect(() => {
             try {
-                fetch('/api/users')
-                    .then((response) => response.json())
-                    .then((data) => setClients(data))
-                    .catch(e=>{
-                        alert("Failed to fetch Users")
-                        setClients([])
-                        console.log(e)
+                const jwtToken = localStorage.getItem('jwtToken');
+                axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+                axios.get("http://localhost:8080/api/users")
+                    .then(response => {
+                        console.log('Data:', response.data);
+                        setClients(response.data)
+                    })
+                    .catch(error => {
+                        console.error('Error:', error.message);
                     });
             } catch (e) {
-
             }
         }, []);
         const remove = async (id: React.Key) => {

@@ -49,32 +49,3 @@
 .client-card .btn-danger {
     background-color: #ff4444;
 }
-.navbar {
-    background-color: #343a40; /* Dark background color */
-    color: #ffffff; /* Text color */
-}
-
-/* Customize the brand link styles */
-.navbar-brand {
-    color: #ffffff; /* Brand text color */
-}
-
-/* Style the brand link on hover */
-.navbar-brand:hover {
-    color: #ffffff; /* Hover text color */
-}
-
-/* Customize the navbar toggler color */
-.navbar-toggler-icon {
-    background-color: #ffffff; /* Toggler icon color */
-}
-
-/* Style the navbar links */
-.navbar-nav a {
-    color: #ffffff; /* Navbar links text color */
-}
-
-/* Style the navbar links on hover */
-.navbar-nav a:hover {
-    color: #ffffff; /* Navbar links hover text color */
-}

@@ -1,5 +1,5 @@
 // LoginComponent.jsx
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import './loginstyle.css'
 import axios from "axios";
@@ -10,19 +10,30 @@ const LoginPage:React.FC =  () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    useEffect(()=>{
+        if(localStorage.getItem("jwtToken")){
+            navigate('/')
+        }
+    })
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/authenticate', {
-                username: username,
-                password: password,
-            }, {
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+            const apiUrl = 'http://localhost:8080/token';
+            axios.post(apiUrl, null, {
+                auth: {
+                    username: username,
+                    password: password
                 }
             })
-            console.log(response)
-            navigate("/home")
+                .then(response => {
+                    console.log('Response:', response.data);
+                    // Set the token in local storage
+                    localStorage.setItem('jwtToken', response.data);
+                    navigate("/")
+                })
+                .catch(error => {
+                    setError("Invalid Credentials")
+                    console.error('Error:', error.message);
+                });
         } catch (error) {
             // Failed login
             console.log(error)
@@ -30,23 +41,26 @@ const LoginPage:React.FC =  () => {
         }
     };
     return (
-        <div className='login-container'>
-            <h2>Login</h2>
-            {error && <div style={{color: 'red'}}>{error}</div>}
-            <form>
-                <div className='login-file'>
-                    <label>Username:</label>
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
-                </div>
-                <div className='login-file'>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                </div>
-                <button type="button" onClick={handleLogin}>
-                    Login
-                </button>
-            </form>
-        </div>
+        <div className='login-component'>
+            <div className={"login-container"}>
+                <h2>Login</h2>
+                {error && <div style={{color: 'red'}}>{error}</div>}
+                <form>
+                    <div className='login-file'>
+                        <label>Username:</label>
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    </div>
+                    <div className='login-file'>
+                        <label>Password:</label>
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    </div>
+                    <button type="button" onClick={handleLogin}>
+                        Login
+                    </button>
+                </form>
+            </div>
+            </div>
+
     );
 };
 

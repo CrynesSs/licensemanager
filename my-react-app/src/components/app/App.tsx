@@ -10,18 +10,13 @@ const App: React.FC = () => {
         <Router>
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/" element={<LoginPage />} />
-                    <Route path="/clients" element={<ClientList />} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<LoginPage />} />
                     {/* Additional routes */}
                 </Routes>
             </Suspense>
         </Router>
     );
 };
-
-const onLoginSuccess = (token: String)=>{
-
-}
 
 export default App;

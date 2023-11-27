@@ -1,6 +1,8 @@
 package com.swa.properSpring.user;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -13,11 +15,14 @@ public class EmployeeController {
 
     private final EmployeeRepository userRepository;
 
-    public EmployeeController(EmployeeRepository repository){
+    public EmployeeController(EmployeeRepository repository) {
         this.userRepository = repository;
     }
+
     @GetMapping
-    public List<Employee> getUsers() {
+    @Secured({"ROLE_USER"})
+    public List<Employee> getUsers(Authentication authentication) {
+        authentication.isAuthenticated();
         return userRepository.findAll();
     }
 
@@ -30,16 +35,19 @@ public class EmployeeController {
             throw new RuntimeException(e);
         }
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateClient(@PathVariable Long id, @RequestBody Employee client) {
         Employee currentClient = userRepository.findById(id).orElseThrow(RuntimeException::new);
         return ResponseEntity.ok(currentClient);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Employee> deleteClient(@PathVariable Long id) {
         userRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/{id}")
     public Employee getClient(@PathVariable Long id) {
         return userRepository.findById(id).orElseThrow(RuntimeException::new);

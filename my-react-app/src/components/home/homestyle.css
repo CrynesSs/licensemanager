@@ -1,0 +1,118 @@
+/* Add your styles here */
+/* Full Page Style */
+.home-component{
+    background-image: url("./circuit_board.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* Main Window Styles (not top-bar/sidebar) */
+.main{
+    display: flex;
+    flex-direction: row;
+}
+/* Sidebar */
+.sidebar {
+    width: 30vh;
+    padding: 10px;
+    background-color: rgba(22, 108, 184, 0.65);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: right;
+    user-select: none;
+}
+.sidebar-item {
+    display: flex;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+    width: 20vh;
+    cursor: inherit;
+    border-radius: 20px;
+    border: solid rgba(14, 119, 198, 0.75);
+    transition: all 0.2s ease;
+}
+.sidebar-item:hover{
+    width: 25vh;
+    background-color: rgba(14, 119, 198, 1.0);
+}
+
+/* top-bar */
+.top-bar {
+    display: flex;
+    height: 10vh;
+    background-color: rgba(22, 108, 184, 0.65);
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+.top-bar-item{
+    margin-right: 20px;
+    align-items: center;
+    font-size: 30px;
+}
+.authStatus{
+    display: flex;
+    justify-content: center;
+    color: red;
+    border-radius: 20px;
+    flex-grow: 1;
+}
+.authStatus:not(.authenticated){
+    animation: growAndShrink 2s infinite alternate;
+}
+/* Define the keyframes */
+@keyframes growAndShrink {
+    0% {
+        transform: scale(1); /* Initial scale */
+    }
+    100% {
+        transform: scale(1.1); /* Final scale */
+    }
+}
+.authStatus.authenticated{
+    color: Black;
+    background-color: rgba(22, 108, 184, 0.65);
+}
+.login-redirect{
+    user-select: none;
+    color: #b91212;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: rgba(22, 108, 184, 0.65);
+    border: solid rgba(14, 119, 198, 0.75);
+    transition: all 0.2s ease;
+    padding: 10px 60px;
+}
+.login-redirect:hover{
+    background-color: rgba(14, 119, 198, 1.0);
+    width: fit-content;
+    flex-grow: 0;
+}
+.top-bar-login-container{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+
+}
+
+/* main-content */
+.main-content {
+    display: block;
+    flex-grow: 1;
+    height: 90vh;
+    background-color: rgba(22, 108, 184, 0.65);
+
+}
+
+.svg-animation {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ecf0f1;
+}
+
+/* Add your additional styles for SVG animation or other elements as needed */

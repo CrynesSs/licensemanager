@@ -1,42 +1,61 @@
 import React, {useEffect, useState} from "react";
 import './homestyle.css'
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
-
+import DynamicTabs from "./DynamicTabs";
+import CustomerComponent from "../usergui/CustomerComponent";
+import InstancesComponent from "../usergui/InstancesComponent";
+import ContractsComponent from "../usergui/ContractsComponent";
+import UsersComponent from "../usergui/UserComponent";
 
 const Home: React.FC = () => {
     const [authenticated, setAuthenticated] = useState<boolean>(false);
+    const [currentComponents, addComponent] = useState<React.FC[]>([])
     const navigate = useNavigate();
     useEffect(() => {
         const jwtToken = localStorage.getItem('jwtToken');
         console.log(jwtToken)
         if (!jwtToken) return;
         setAuthenticated(true);
-    })
-    const onClickHandler = () => {
-        navigate("/login")
+    }, [])
+
+    const enum SIDEBARITEM {
+        CUSTOMERS,
+        CONTRACTS,
+        INSTANCES,
+        USERS
     }
 
-    const getUserData = () => {
-        const apiUrl = 'http://localhost:8080/user';
-        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwtToken')}`;
-        // Set up the axios request with the Authorization header
-        axios.get("http://localhost:8080/api/users")
-            .then(response => {
-                console.log('Data:', response.data);
-                response.data.forEach((d: any)=>console.log(d))
-            })
-            .catch(error => {
-                console.error('Error:', error.message);
-            });
+    const findSideBarComponent  = (sidebarItemEnum: SIDEBARITEM): React.FC => {
+        switch (sidebarItemEnum) {
+            case SIDEBARITEM.CUSTOMERS:
+                return CustomerComponent;
+            case SIDEBARITEM.CONTRACTS:
+                return ContractsComponent;
+            case SIDEBARITEM.INSTANCES:
+                return InstancesComponent;
+            case SIDEBARITEM.USERS:
+                return UsersComponent;
+        }
     }
+
+    function handleSidebarClick(value: SIDEBARITEM) {
+        const component = findSideBarComponent(value)
+        console.log(currentComponents)
+        if(currentComponents.filter(f=>f.displayName ===component.displayName).length==0){
+            addComponent([component,...currentComponents])
+        }else{
+            addComponent([component,...currentComponents.filter(f=>f.displayName!==component.displayName)])
+        }
+    }
+
+    // @ts-ignore
     return (
         <div className="home-component">
             {/* Top Bar */}
             <div className="top-bar">
                 {!authenticated &&
                     <div className="top-bar-item top-bar-login-container">
-                        <button className={"login-redirect"} onClick={onClickHandler}>
+                        <button className={"login-redirect"} onClick={() => navigate("/login")}>
                             Login
                         </button>
                     </div>
@@ -44,23 +63,28 @@ const Home: React.FC = () => {
                 <div className={`top-bar-item authStatus ${authenticated ? "authenticated" : ""}`}>
                     Auth-Status: {authenticated ? "Authenticated" : "Missing"}
                 </div>
-
             </div>
-            <div className="main">
+            <div id="main" className={"main"}>
                 {/* Sidebar */}
                 <div className="sidebar">
-                    <div className="sidebar-item" onClick={getUserData}>Item 1</div>
-                    <div className="sidebar-item">Item 2</div>
-                    <div className="sidebar-item">Item 3</div>
-                    <div className="sidebar-item">Item 4</div>
+                    <div className="sidebar-item"
+                         onClick={() => handleSidebarClick(SIDEBARITEM.CUSTOMERS)}>Customers
+                    </div>
+                    <div className="sidebar-item"
+                         onClick={() => handleSidebarClick(SIDEBARITEM.CONTRACTS)}>Contracts
+                    </div>
+                    <div className="sidebar-item"
+                         onClick={() => handleSidebarClick(SIDEBARITEM.INSTANCES)}>Instances
+                    </div>
+                    <div className="sidebar-item"
+                         onClick={() => handleSidebarClick(SIDEBARITEM.USERS)}>Users
+                    </div>
                 </div>
                 {/* Main Content */}
                 <div className="main-content">
                     {/* SVG Animation */}
-                    <div className="svg-animation">
-                        {/* Your SVG Animation Goes Here */}
-                        {/* Example: <svg>...</svg> */}
-                    </div>
+                    {/*@ts-ignore*/}
+                    <DynamicTabs componentList={currentComponents}/>
                 </div>
             </div>
         </div>

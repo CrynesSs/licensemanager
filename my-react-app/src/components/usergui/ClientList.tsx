@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Button, ButtonGroup, Container} from 'reactstrap';
-import {Link, useNavigate} from 'react-router-dom';
+import {Button, ButtonGroup} from 'reactstrap';
+import {useNavigate} from 'react-router-dom';
 import EditClientForm from "./EditClientForm";
 import axios from "axios";
+import "../usergui/userguistyles/ClientListStyle.css"
 
 export interface Client {
     id: React.Key;
@@ -79,33 +80,27 @@ const ClientList: React.FC = () => {
 
         return (
             <div>
-                <Container fluid>
-                    <div className="float-right">
-                        <Button color="success" tag={Link} to="/clients/new">
-                            Add Client
-                        </Button>
+                <div className={"client-list-header"}>
+                    <div className={"client-field"}>
+                        Username
                     </div>
-                    <div className={"client-list-header"}>
-                        <div className={"client-field"}>
-                            Username
-                        </div>
-                        <div className={"client-field"}>
-                            Email
-                        </div>
-                        <div className={"client-field"}>
-                        </div>
+                    <div className={"client-field"}>
+                        Email
                     </div>
-                    <div className="client-list">{clientList}</div>
-                    {/* EditClientForm component */}
-                    {editClient && (
-                        <EditClientForm
-                            isOpen={true}
-                            initialData={editClient}
-                            onSave={handleEditFormSubmit}
-                            onClose={handleEditFormClose}
-                        />
-                    )}
-                </Container>
+                    <div className={"client-field"}>
+                    </div>
+                </div>
+                <div className="client-list">{clientList}</div>
+                {/* EditClientForm component */}
+                {editClient && (
+                    <EditClientForm
+                        isOpen={true}
+                        initialData={editClient}
+                        onSave={handleEditFormSubmit}
+                        onClose={handleEditFormClose}
+                    />
+                )}
+
             </div>
         );
     }

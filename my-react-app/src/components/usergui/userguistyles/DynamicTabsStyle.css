@@ -1,0 +1,26 @@
+
+
+.tabsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+.btn-group{
+    display: flex;
+    justify-items: center;
+    flex-grow: 1;
+    height: 5vh;
+    background-color: rgba(10, 83, 155, 0.84);
+}
+button{
+    flex-grow: 1;
+    color: white;
+    border: 5px solid #ccc;
+    margin: 5px;
+    background: rgba(24, 163, 181, 0.6);
+}
+.component-content-container{
+    background-color: rgba(10, 83, 155, 0.84);
+    flex-grow: 1;
+    height: 90vh;
+}

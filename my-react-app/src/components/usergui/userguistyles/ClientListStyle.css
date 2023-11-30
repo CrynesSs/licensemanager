@@ -1,0 +1,53 @@
+.client-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.client-list-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width as needed */
+    background: rgba(24, 163, 181, 0.6);
+    border-radius: 50px;
+    margin-right: 5vh;
+    border: 5px solid #ccc;
+}
+.client-list-header .client-field{
+    color: white;
+    font-weight: bold;
+}
+.client-card {
+    border: 5px solid #ccc;
+    display: flex;
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width as needed */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.client-field {
+    font-size: 18px;
+    padding: 10px;
+    width: 33.33%;
+    color: aqua;
+}
+
+.btn-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.client-card .btn {
+    display: block;
+    height: 35px;
+    color: black;
+    border-radius: 12px;
+    width: 150px;
+}
+.client-card .btn-primary {
+    background-color: #007bff;
+}
+
+.client-card .btn-danger {
+    background-color: #ff4444;
+}

@@ -6,6 +6,7 @@ import CustomerComponent from "../usergui/CustomerComponent";
 import InstancesComponent from "../usergui/InstancesComponent";
 import ContractsComponent from "../usergui/ContractsComponent";
 import UsersComponent from "../usergui/UserComponent";
+import {jwtDecode} from "jwt-decode";
 
 const Home: React.FC = () => {
     const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -13,9 +14,19 @@ const Home: React.FC = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const jwtToken = localStorage.getItem('jwtToken');
-        console.log(jwtToken)
         if (!jwtToken) return;
-        setAuthenticated(true);
+        let decodedToken = jwtDecode(jwtToken);
+        if(!decodedToken)return;
+        console.log("Decoded Token", decodedToken);
+        let currentDate = new Date();
+        // JWT exp is in seconds
+        if (decodedToken.exp! * 1000 < currentDate.getTime()) {
+            console.log("Token expired.");
+        } else {
+            console.log("Valid token");
+            setAuthenticated(true);
+        }
+
     }, [])
 
     const enum SIDEBARITEM {

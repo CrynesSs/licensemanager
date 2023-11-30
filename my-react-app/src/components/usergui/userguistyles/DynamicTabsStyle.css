@@ -5,12 +5,12 @@
     flex-direction: row;
     flex-grow: 1;
     height: 5vh;
+    background-color: rgba(10, 83, 155, 0.84);
 }
 .btn-group{
     display: flex;
     justify-items: center;
     flex-grow: 1;
-    background-color: rgba(10, 83, 155, 0.84);
 }
 .tab{
     flex-grow: 1;

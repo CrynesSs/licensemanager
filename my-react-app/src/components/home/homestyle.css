@@ -47,11 +47,12 @@ body{
 /* top-bar */
 .top-bar {
     display: flex;
-    height: 10vh;
+    height: 15vh;
     background-color: rgba(10, 83, 155, 0.84);
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: row;
+
 }
 .top-bar-item{
     align-items: center;
@@ -101,7 +102,6 @@ body{
 .top-bar-login-container{
     display: flex;
     justify-content: center;
-    flex-grow: 1;
 
 }
 

@@ -22,6 +22,7 @@ const Home: React.FC = () => {
         // JWT exp is in seconds
         if (decodedToken.exp! * 1000 < currentDate.getTime()) {
             console.log("Token expired.");
+            localStorage.setItem("jwtToken","")
         } else {
             console.log("Valid token");
             setAuthenticated(true);

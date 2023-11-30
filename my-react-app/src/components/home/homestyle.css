@@ -1,4 +1,8 @@
 /* Add your styles here */
+body{
+    height: 100vh;
+    overflow: hidden;
+}
 /* Full Page Style */
 .home-component{
     background-image: url("./circuit_board.svg");
@@ -12,7 +16,7 @@
 }
 /* Sidebar */
 .sidebar {
-    width: 30vh;
+    width: 15vw;
     padding: 10px;
     background-color: rgba(10, 83, 155, 0.84);
     color: white;
@@ -25,10 +29,10 @@
 .sidebar-item {
     display: flex;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 50px;
     margin-bottom: 20px;
     justify-content: center;
-    width: 20vh;
+    width: 10vw;
     cursor: inherit;
     border-radius: 20px;
     border: 5px solid #ccc;
@@ -36,7 +40,7 @@
     transition: all 0.2s ease;
 }
 .sidebar-item:hover{
-    width: 25vh;
+    width: 12.5vw;
     background-color: rgba(14, 119, 198, 1.0);
 }
 

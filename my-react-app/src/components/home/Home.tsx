@@ -37,7 +37,12 @@ const Home: React.FC = () => {
                 return UsersComponent;
         }
     }
-
+    const removeComponent = (indexToRemove: number) => {
+        // Logic to remove component at the specified index
+        const updatedList = [...currentComponents];
+        updatedList.splice(indexToRemove, 1);
+        addComponent(updatedList);
+    };
     function handleSidebarClick(value: SIDEBARITEM) {
         const component = findSideBarComponent(value)
         console.log(currentComponents)
@@ -84,7 +89,7 @@ const Home: React.FC = () => {
                 <div className="main-content">
                     {/* SVG Animation */}
                     {/*@ts-ignore*/}
-                    <DynamicTabs componentList={currentComponents}/>
+                    <DynamicTabs componentList={currentComponents} onRemove={removeComponent}/>
                 </div>
             </div>
         </div>

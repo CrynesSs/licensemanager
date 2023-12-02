@@ -5,7 +5,7 @@ import DynamicTabs from "./DynamicTabs";
 import CustomerComponent from "../usergui/CustomerComponent";
 import InstancesComponent from "../usergui/InstancesComponent";
 import ContractsComponent from "../usergui/ContractsComponent";
-import UsersComponent from "../usergui/UserComponent";
+import UsersComponent from "../usergui/users/UserComponent";
 import {jwtDecode} from "jwt-decode";
 
 const Home: React.FC = () => {

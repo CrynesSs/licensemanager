@@ -1,42 +1,75 @@
 package com.swa.properSpring.customer;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.swa.properSpring.contract.Contract;
+import com.swa.properSpring.user.Employee;
+import jakarta.persistence.*;
 
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID customer_id;
+    @GeneratedValue
+    private Long customer_id;
+
+    private String customerName;
     private String addressDetailA;
     private String addressDetailB;
+    @OneToMany()
+    private List<Employee> users  = new ArrayList<>();
+    @OneToMany()
+    private List<Contract> contracts = new ArrayList<>();
 
-
-    public void setCustomer_id(UUID customer_id) {
-        this.customer_id = customer_id;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public UUID getCustomer_id() {
-        return customer_id;
+    public List<Employee> getUsers() {
+        return users;
     }
+
+
 
     public String getAddressDetailA() {
         return addressDetailA;
-    }
-
-    public void setAddressDetailA(String addressDetailA) {
-        this.addressDetailA = addressDetailA;
     }
 
     public String getAddressDetailB() {
         return addressDetailB;
     }
 
-    public void setAddressDetailB(String addressDetailB) {
-        this.addressDetailB = addressDetailB;
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public static class Builder{
+        private final Customer customer;
+
+        public Builder() {
+            this.customer = new Customer();
+        }
+        public Customer.Builder setCustomerName(String customerName){
+            this.customer.customerName = customerName;
+            return this;
+        }
+        public Customer.Builder setAddressDetail(String addressDetail){
+            if(customer.addressDetailA != null){
+                customer.addressDetailB = addressDetail;
+                return this;
+            }
+            if(customer.addressDetailB != null){
+                return this;
+            }
+            customer.addressDetailB = addressDetail;
+            return this;
+        }
+        public Customer.Builder addUser(Employee employee){
+            customer.users.add(employee);
+            return this;
+        }
+        public Customer build(){
+            return this.customer;
+        }
     }
 }

@@ -1,0 +1,21 @@
+.companyContainer{
+    display: flex;
+    flex-direction: column;
+}
+.companyHeader{
+    display: flex;
+    flex-direction: row;
+    border-width: 5px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+.nameContainer{
+    display: flex;
+    color: white;
+    border-color: white;
+    border-style: solid;
+    user-select: none;
+    font-size: 20px;
+    width: 10vw;
+    justify-content: center;
+}

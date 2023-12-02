@@ -106,6 +106,7 @@ public class Employee implements UserDetails {
     private String phone2;
     private java.util.Date createdOn;
 
+
     protected Employee() {
 
     }

@@ -2,7 +2,6 @@ import React, {Suspense} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from "../home/Home";
-import ClientList from "../usergui/ClientList";
 import LoginPage from "../login/LoginPage";
 
 const App: React.FC = () => {

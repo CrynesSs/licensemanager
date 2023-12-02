@@ -22,8 +22,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 
+    implementation 'com.github.javafaker:javafaker:1.0.2'
     runtimeOnly 'org.postgresql:postgresql'
     implementation 'org.postgresql:postgresql:42.6.0'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

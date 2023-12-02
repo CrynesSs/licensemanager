@@ -4,28 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12aa8b28-a261-4d65-bba6-428583792edc" name="Changes" comment="Cors Issue still and now auth a bit">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+    <list default="true" id="12aa8b28-a261-4d65-bba6-428583792edc" name="Changes" comment="Backend and Frontend fixes. Added new Functionality and relations">
+      <change afterPath="$PROJECT_DIR$/my-react-app/src/components/usergui/userguistyles/UserComponentStyles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/contract/ContractController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/customer/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/instance/Instance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/instance/InstanceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/instance/InstanceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/swa/util/IPAddress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/87054985-a5a7-49cc-af03-91f92975b582/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/http-service.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/login/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-react-app/src/http-common.js.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/home/DynamicTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/home/DynamicTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/home/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/usergui/ClientList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/usergui/users/Clientlist.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/usergui/EditClientForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/usergui/UserComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/usergui/users/UserComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-react-app/src/components/usergui/userguistyles/DynamicTabsStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/my-react-app/src/components/usergui/userguistyles/DynamicTabsStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/DatabaseLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/licensemanager/DatabaseLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/contract/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/contract/Contract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/contract/ContractRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/contract/ContractRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/customer/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/customer/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/customer/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/services/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/services/ContractService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/properSpring/user/EmployeeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/security/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/security/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/security/CustomAuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/security/CustomAuthenticationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swa/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swa/security/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,12 +81,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
-        <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="HTML File" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="HTML File" />
+        <option value="TypeScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -92,6 +99,9 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/my-react-app/package.json" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -102,66 +112,72 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "javascript.nodejs.core.library.configured.version": "20.5.1",
-    "javascript.nodejs.core.library.typings.version": "20.5.1",
-    "last_opened_file_path": "C:/Users/Julian/IdeaProjects/swa/src/main/resources/static",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Facets",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "7e29f6e93ceec9e240fc69378a21790f",
-    "ts.external.directory.path": "C:\\Users\\Julian\\IdeaProjects\\swa\\my-react-app\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.5.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.5.1&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Julian/IdeaProjects/swa/src/main/resources/templates&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;7e29f6e93ceec9e240fc69378a21790f&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Julian\\IdeaProjects\\swa\\my-react-app\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Julian\IdeaProjects\swa\src\main\resources\templates" />
-      <recent name="C:\Users\Julian\IdeaProjects\swa\src\main\resources\static" />
-      <recent name="C:\Users\Julian\IdeaProjects\swa\src\main\resources" />
-      <recent name="C:\Users\Julian\IdeaProjects\swa\my-react-app\src\components\app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Julian\IdeaProjects\swa\my-react-app\src\components\usergui\users" />
       <recent name="C:\Users\Julian\IdeaProjects\swa\my-react-app\src\components\home" />
+      <recent name="C:\Users\Julian\IdeaProjects\swa\my-react-app\src\static" />
+      <recent name="C:\Users\Julian\IdeaProjects\swa\src\main\resources\static\icon" />
+      <recent name="C:\Users\Julian\IdeaProjects\swa\src\main\resources\static" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.swa.licensemanager" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.LicensemanagerApplication">
-    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
+    <configuration name="generated-requests | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="5" requestIdentifier="#5" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="2" requestIdentifier="#2" runType="Run single request">
+    <configuration name="generated-requests | #6" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="6" requestIdentifier="#6" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="3" requestIdentifier="#3" runType="Run single request">
+    <configuration name="generated-requests | #7" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="7" requestIdentifier="#7" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="4" requestIdentifier="#4" runType="Run single request">
+    <configuration name="generated-requests | #8" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="8" requestIdentifier="#8" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #9" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="9" requestIdentifier="#9" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
@@ -184,23 +200,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/my-react-app/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | #4" />
-        <item itemvalue="npm.build" />
-        <item itemvalue="HTTP Request.generated-requests | #2" />
-        <item itemvalue="HTTP Request.generated-requests | #3" />
-        <item itemvalue="HTTP Request.generated-requests | #1" />
+        <item itemvalue="HTTP Request.generated-requests | #9" />
+        <item itemvalue="HTTP Request.generated-requests | #8" />
+        <item itemvalue="HTTP Request.generated-requests | #7" />
+        <item itemvalue="HTTP Request.generated-requests | #6" />
+        <item itemvalue="HTTP Request.generated-requests | #5" />
       </list>
     </recent_temporary>
   </component>
@@ -224,7 +230,13 @@
       <workItem from="1700411505918" duration="12047000" />
       <workItem from="1700731147226" duration="1026000" />
       <workItem from="1700829891961" duration="21112000" />
-      <workItem from="1701015564764" duration="9943000" />
+      <workItem from="1701015564764" duration="23925000" />
+      <workItem from="1701043508854" duration="13000" />
+      <workItem from="1701043533628" duration="12032000" />
+      <workItem from="1701092168421" duration="4277000" />
+      <workItem from="1701334493419" duration="1000" />
+      <workItem from="1701334535147" duration="21344000" />
+      <workItem from="1701429313080" duration="20289000" />
     </task>
     <task id="LOCAL-00001" summary="Added Table Creation Functionality">
       <created>1699719982477</created>
@@ -380,11 +392,99 @@
       <option name="project" value="LOCAL" />
       <updated>1700895894573</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Login working">
+      <created>1701025683038</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1701025683038</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Backend working so far.&#10;React App Integration is ???">
+      <created>1701033502365</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1701033502365</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Login works now.&#10;JWT to do. And app to do">
+      <created>1701040827839</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1701040827839</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Login works now.&#10;JWT to do. And app to do">
+      <created>1701040842727</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1701040842727</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Login works now.&#10;JWT to do. And app to do">
+      <created>1701040898759</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1701040898759</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Small redirecrt fix">
+      <created>1701041526192</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1701041526192</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Working JWT. Working Login Page and Homepage.&#10;Working API Endpoint Security.&#10;Index React Component Design.&#10;Navigation between Sites.">
+      <created>1701055515761</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1701055515761</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Working JWT. Working Login Page and Homepage.&#10;Working API Endpoint Security.&#10;Index React Component Design.&#10;Navigation between Sites.">
+      <created>1701055532194</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1701055532194</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Frontend App">
+      <created>1701347198786</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1701347198786</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Frontend App dev continued">
+      <created>1701351077905</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1701351077905</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Frontend App dev continued">
+      <created>1701351731943</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1701351731943</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Frontend App dev finished for now">
+      <created>1701352345721</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1701352345721</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.pub" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.key" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -410,10 +510,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Table Creation Functionality" />
-    <MESSAGE value="Added TablCleanup and added Contract Table" />
-    <MESSAGE value="Added Insert and Update functionality with search queries and data dynamically assigned" />
-    <MESSAGE value="Refactored SQL Constraint and added Column Definitions" />
     <MESSAGE value="Proper Spring i guess" />
     <MESSAGE value="First proper Spring Boot DAtabase whatever Nightmare" />
     <MESSAGE value="Update 1" />
@@ -429,6 +525,16 @@
     <MESSAGE value="Looking good. Only Cors Missing" />
     <MESSAGE value="Cors Issue still" />
     <MESSAGE value="Cors Issue still and now auth a bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cors Issue still and now auth a bit" />
+    <MESSAGE value="Login working" />
+    <MESSAGE value="Backend working so far.&#10;React App Integration is ???" />
+    <MESSAGE value="Login works now.&#10;JWT to do. And app to do" />
+    <MESSAGE value="Small redirecrt fix" />
+    <MESSAGE value="Working JWT. Working Login Page and Homepage." />
+    <MESSAGE value="Working JWT. Working Login Page and Homepage.&#10;Working API Endpoint Security.&#10;Index React Component Design.&#10;Navigation between Sites." />
+    <MESSAGE value="Frontend App" />
+    <MESSAGE value="Frontend App dev continued" />
+    <MESSAGE value="Frontend App dev finished for now" />
+    <MESSAGE value="Backend and Frontend fixes. Added new Functionality and relations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Backend and Frontend fixes. Added new Functionality and relations" />
   </component>
 </project>

@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class EmployeeController {
 
     private final EmployeeRepository userRepository;
@@ -26,6 +26,7 @@ public class EmployeeController {
         return userRepository.findAll();
     }
 
+    @Secured({"ROLE_ADMIN"})
     @PostMapping
     public ResponseEntity<Employee> createClient(@RequestBody Employee client) {
         Employee savedClient = userRepository.save(client);
@@ -36,18 +37,21 @@ public class EmployeeController {
         }
     }
 
+    @Secured({"ROLE_ADMIN"})
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateClient(@PathVariable Long id, @RequestBody Employee client) {
         Employee currentClient = userRepository.findById(id).orElseThrow(RuntimeException::new);
         return ResponseEntity.ok(currentClient);
     }
 
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/{id}")
     public ResponseEntity<Employee> deleteClient(@PathVariable Long id) {
         userRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
+    @Secured({"ROLE_USER"})
     @GetMapping("/{id}")
     public Employee getClient(@PathVariable Long id) {
         return userRepository.findById(id).orElseThrow(RuntimeException::new);

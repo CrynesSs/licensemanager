@@ -7,8 +7,6 @@ import com.swa.properSpring.customer.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 public class ContractService {
     private final ContractRepository contractRepository;
@@ -18,11 +16,13 @@ public class ContractService {
         this.customerRepository = customerRepository;
     }
 
-    public void saveContractWithCustomer(UUID customerId, Contract contract) {
+    public void saveContractWithCustomer(Long customerId, Contract contract) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new EntityNotFoundException("Customer not found with id: " + customerId));
 
+        customer.getContracts().add(contract);
         contract.setCustomer(customer);
+        customerRepository.save(customer);
         contractRepository.save(contract);
     }
 }

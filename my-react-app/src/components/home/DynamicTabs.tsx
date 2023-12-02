@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import "../usergui/userguistyles/DynamicTabsStyle.css"
 import {ButtonGroup} from "reactstrap";
 
@@ -7,12 +7,11 @@ interface DynamicTabsProbs {
     onRemove: (index: number) => void;
 }
 
-const DynamicTabs: React.FC<DynamicTabsProbs> = ({componentList,onRemove}, ref) => {
+const DynamicTabs: React.FC<DynamicTabsProbs> = ({componentList,onRemove}) => {
     const [activeTab, setActiveTab] = useState<number>(0);
     const selectedComponent = componentList[activeTab]
     const handleRemoveClick = (index: number) => {
         onRemove(index);
-        console.log("COmponentlistlength",componentList.length)
         if(activeTab == componentList.length-1){
             setActiveTab(activeTab-1 > 0 ? activeTab-1 : 0)
         }

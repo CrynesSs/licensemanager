@@ -1,6 +1,7 @@
 .companyContainer{
     display: flex;
     flex-direction: column;
+    overflow-y: hidden;
 }
 .companyHeader{
     display: flex;
@@ -16,6 +17,10 @@
     border-style: solid;
     user-select: none;
     font-size: 20px;
-    width: 10vw;
+    width: 20vw;
     justify-content: center;
+}
+.customer-component{
+    overflow-y: scroll;
+    height: 75vh;
 }

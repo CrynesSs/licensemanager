@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.HashSet;
-
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
@@ -28,21 +25,28 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
         Faker faker = new Faker();
-
-
-        Employee.Builder employee1 = new Employee
-                .Builder("BilboBaggins1337", "kekwbadpassword")
-                .addCompany("MiddleEarthInc.")
-                .addName("Bilbo", "Baggins")
-                .addEmail("bilbo@middle-earth.fm")
-                .addPhone("13376258238").addPhone("1238741122384")
-                .addRole("ADMIN").addRole("USER");
-        service.saveOrUpdateEntity(employee1.build());
-
-        Customer.Builder customer1 = new Customer.Builder().setCustomerName("Test1").setAddressDetail("testaddress1").setAddressDetail("testaddress2").addUser(employee1.build());
-
-        repository.save(customer1.build());
-
-        service.saveOrUpdateEntity(new Employee("Frodo_Baggins69XXX", "burglar", "frodo@middle-earth.fm", "Hobbits.inc", "Frodo", "Baggins", "13376969555", "kek", new HashSet<>(Collections.singleton("ADMIN"))));
+        for(int i=0;i<10;++i){
+            Customer.Builder customer1 = new Customer
+                    .Builder()
+                    .setCustomerName(faker.name().name())
+                    .setAddressDetail(faker.address().fullAddress())
+                    .setAddressDetail(faker.address().fullAddress());
+            Customer c = customer1.build();
+            for(int k=0;k<10;++k){
+                Employee.Builder employeeBuilder = new Employee
+                        .Builder("BilboBaggins1337", "kekwbadpassword")
+                        .addCompany(c.getCustomerName())
+                        .addName(faker.name().firstName(), faker.name().lastName())
+                        .addEmail(faker.internet().emailAddress())
+                        .addPhone(faker.phoneNumber().phoneNumber()).addPhone(faker.phoneNumber().phoneNumber())
+                        .addRole("USER");
+                if(Math.random() > 0.5){
+                    employeeBuilder.addRole("ADMIN");
+                }
+                service.saveOrUpdateEntity(employeeBuilder.build());
+                c.getUsers().add(employeeBuilder.build());
+            }
+            repository.save(c);
+        }
     }
 }

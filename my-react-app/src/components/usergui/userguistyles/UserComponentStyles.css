@@ -18,6 +18,7 @@
     user-select: none;
     font-size: 20px;
     width: 20vw;
+    margin: 10px;
     justify-content: center;
 }
 .customer-component{

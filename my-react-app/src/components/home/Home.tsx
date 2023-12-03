@@ -67,6 +67,7 @@ const Home: React.FC = () => {
 
     // @ts-ignore
     return (
+
         <div className="home-component">
             {/* Top Bar */}
             <div className="top-bar">

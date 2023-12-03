@@ -3,6 +3,9 @@
     flex-direction: column;
     justify-content: space-around;
 }
+.nameContainerText{
+    margin: 10px;
+}
 .client-list-header{
     display: flex;
     flex-direction: row;

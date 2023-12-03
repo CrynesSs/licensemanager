@@ -28,13 +28,13 @@ public class DatabaseLoader implements CommandLineRunner {
         for(int i=0;i<10;++i){
             Customer.Builder customer1 = new Customer
                     .Builder()
-                    .setCustomerName(faker.name().name())
+                    .setCustomerName(faker.company().name())
                     .setAddressDetail(faker.address().fullAddress())
                     .setAddressDetail(faker.address().fullAddress());
             Customer c = customer1.build();
             for(int k=0;k<10;++k){
                 Employee.Builder employeeBuilder = new Employee
-                        .Builder("BilboBaggins1337", "kekwbadpassword")
+                        .Builder(faker.name().username(), faker.internet().password())
                         .addCompany(c.getCustomerName())
                         .addName(faker.name().firstName(), faker.name().lastName())
                         .addEmail(faker.internet().emailAddress())
@@ -48,5 +48,13 @@ public class DatabaseLoader implements CommandLineRunner {
             }
             repository.save(c);
         }
+        Employee.Builder employeeBuilder = new Employee
+                .Builder("BilboBaggins1337", "kekwbadpassword")
+                .addCompany(faker.company().name())
+                .addName(faker.name().firstName(), faker.name().lastName())
+                .addEmail(faker.internet().emailAddress())
+                .addPhone(faker.phoneNumber().phoneNumber()).addPhone(faker.phoneNumber().phoneNumber())
+                .addRole("USER").addRole("ADMIN");
+        service.saveOrUpdateEntity(employeeBuilder.build());
     }
 }

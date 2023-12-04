@@ -7,9 +7,9 @@ const CompanyComponent: React.FC<{ value: string, clients: Client[]}> = ({value,
 
     const [expanded, setExpanded] = useState<boolean>(false)
     return (
-        <div className={"companyContainer"} onClick={() => setExpanded(!expanded)}>
+        <div className={"companyContainer"} >
             <div className={"companyHeader"}>
-                <div className={"nameContainer"}>
+                <div className={"nameContainer"} onClick={() => setExpanded(!expanded)}>
                     <div className={"nameContainerText"}>
                         {"Company : " + value}
                     </div>

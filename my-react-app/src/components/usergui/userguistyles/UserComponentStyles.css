@@ -18,12 +18,18 @@
     display: flex;
     color: white;
     border-color: white;
+    border-radius: 20px;
     border-style: solid;
     user-select: none;
     font-size: 20px;
     width: 20vw;
     margin: 10px;
     justify-content: center;
+    transition: all 0.2s ease;
+}
+.nameContainer:hover{
+    background-color: #4f2c92;
+    transition: all 0.2s ease;
 }
 
 .customer-component {

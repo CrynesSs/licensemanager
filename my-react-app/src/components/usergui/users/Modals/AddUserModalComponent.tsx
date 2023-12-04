@@ -1,8 +1,9 @@
 import React from "react";
-import {ModalBody, ModalFooter, ModalHeader} from "react-bootstrap";
+import {Button, ModalBody, ModalFooter, ModalHeader} from "react-bootstrap";
+import AddUserModalForm from "../Forms/AddUserModalForm";
 
 
-const AddUserModalComponent: React.FC<{ closeModal: () => void }> = ({closeModal}) => {
+const AddUserModalComponent: React.FC<{ closeModal: () => void ,companies:string[]}> = ({closeModal,companies}) => {
     const handleClose = () => {
         closeModal();
     };
@@ -17,14 +18,14 @@ const AddUserModalComponent: React.FC<{ closeModal: () => void }> = ({closeModal
                     This is the Add User Modal
                 </ModalHeader>
                 <ModalBody>
-
+                    <AddUserModalForm companies={companies}/>
                 </ModalBody>
                 <ModalFooter>
-                    <button onClick={(event) => {
+                    <Button onClick={(event) => {
                         handleClose();
                         event.stopPropagation()
                     }}>Close Modal
-                    </button>
+                    </Button>
                 </ModalFooter>
 
                 {/* Other content for your modal */}

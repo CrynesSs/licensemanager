@@ -57,7 +57,7 @@ const UsersComponent: React.FC = () => {
                 {clientList}
             </div>
             <div>
-                {addModalOpen && <AddUserModalComponent  closeModal={()=>setAddModalOpen(false)}/>}
+                {addModalOpen && <AddUserModalComponent  closeModal={()=>setAddModalOpen(false)} companies={Object.keys(data)}/>}
             </div>
         </>
 

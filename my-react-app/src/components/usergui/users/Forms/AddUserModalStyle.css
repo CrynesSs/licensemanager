@@ -1,0 +1,20 @@
+
+.modal-header{
+    color: white;
+    font-weight: bold;
+}
+.form-control{
+    border-radius: 20px;
+    background-color: rgba(54, 0, 248, 0.39);
+    color: white;
+    font-weight: bold;
+}
+.form-control:focus{
+    background-color: rgba(54, 0, 248, 0.39);
+    color: white;
+
+}
+.modal-content{
+    background-image: linear-gradient(#4f2c92,#ff4444);
+    border: none;
+}

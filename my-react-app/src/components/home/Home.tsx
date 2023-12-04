@@ -18,15 +18,18 @@ const Home: React.FC = () => {
         setTopBarAdd(name)
     }
     return (
-        <div className="home-component">
-            <TopBar authenticated={authenticated} toAdd={topBarAdd}/>
-            <div id="main" className={"main"}>
-                <SideBar setCurrentComponent={setComponent}/>
-                <div className="main-content">
-                    {currentComponent}
+        <>
+            <div className="home-component">
+                <TopBar authenticated={authenticated} toAdd={topBarAdd}/>
+                <div id="main" className={"main"}>
+                    <SideBar setCurrentComponent={setComponent}/>
+                    <div className="main-content">
+                        {currentComponent}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
+
     );
 }
 export default Home;

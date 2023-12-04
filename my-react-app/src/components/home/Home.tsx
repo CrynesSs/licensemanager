@@ -11,7 +11,7 @@ const Home: React.FC = () => {
     const [topBarAdd,setTopBarAdd] = useState<string>("None")
     useEffect(() => {
         setAuthenticated(checkJWTToken())
-    }, [])
+    }, [currentComponent])
 
     const setComponent = (element: ReactElement,name: string) =>{
         setCurrentComponent(element)

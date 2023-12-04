@@ -3,6 +3,7 @@ import axios from "axios";
 import "../userguistyles/UserComponentStyles.css"
 import CompanyComponent from "./CompanyComponent";
 import AddUserModalComponent from "./Modals/AddUserModalComponent";
+import {useNavigate} from "react-router-dom";
 
 // Assuming this function fetches data from your API
 const fetchData = async () => {
@@ -12,18 +13,18 @@ const fetchData = async () => {
         const response = await axios.get("http://localhost:8080/api/customer/employees");
         return response.data as { [company: string]: [] };
     } catch (error) {
-        console.error(error);
         throw error; // Propagate the error to the caller
     }
 };
 
 const UsersComponent: React.FC = () => {
     const [data, setData] = useState<{ [company: string]: [] }>({});
-    const [addModalOpen,setAddModalOpen] = useState<boolean>(false)
+    const [addModalOpen, setAddModalOpen] = useState<boolean>(false)
+    const navigate = useNavigate()
     useEffect(() => {
         let element = document.getElementById("addButton")
-        if(element){
-            element.addEventListener("click",()=>{
+        if (element) {
+            element.addEventListener("click", () => {
                 setAddModalOpen(true)
             })
         }
@@ -34,20 +35,26 @@ const UsersComponent: React.FC = () => {
                 console.log("Data fetched");
             } catch (error) {
                 // Handle the error appropriately, e.g., display an error message
-                console.error("Error in fetchDataAndSetData:");
-                alert("Could not fetch Data.")
                 throw error
             }
         };
-        fetchDataAndSetData().then(() => console.log("Data fetched")).catch(() => {
-            console.log("Could not fetch Data")
-        });
+        fetchDataAndSetData()
+            .then(() => console.log("Data fetched"))
+            .catch((e) => {
+                if(e.response.status ==401){
+                    alert("Unauthorized, please log in")
+                    navigate("/login")
+                }else if(e.response.status.toString().startsWith("5")){
+                    alert("Server currently unavailable")
+                }
+
+            });
     }, []);
 
 
     const clientList = Object.keys(data).map((value) => {
         return (
-            <CompanyComponent value={value} clients={data[value]} />
+            <CompanyComponent value={value} clients={data[value]}/>
         )
     })
 
@@ -57,7 +64,8 @@ const UsersComponent: React.FC = () => {
                 {clientList}
             </div>
             <div>
-                {addModalOpen && <AddUserModalComponent  closeModal={()=>setAddModalOpen(false)} companies={Object.keys(data)}/>}
+                {addModalOpen &&
+                    <AddUserModalComponent closeModal={() => setAddModalOpen(false)} companies={Object.keys(data)}/>}
             </div>
         </>
 

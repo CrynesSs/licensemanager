@@ -1,16 +1,20 @@
-.companyContainer{
+.companyContainer {
     display: flex;
     flex-direction: column;
     overflow-y: hidden;
 }
-.companyHeader{
+
+.companyHeader {
     display: flex;
     flex-direction: row;
     border-width: 5px;
+    padding-left: 2vw;
     margin-top: 2vh;
     margin-bottom: 2vh;
+    justify-content: flex-start;
 }
-.nameContainer{
+
+.nameContainer {
     display: flex;
     color: white;
     border-color: white;
@@ -21,7 +25,13 @@
     margin: 10px;
     justify-content: center;
 }
-.customer-component{
+
+.customer-component {
     overflow-y: scroll;
-    height: 75vh;
+    height: 80vh;
+    scrollbar-width: none;
+}
+
+.customer-component::-webkit-scrollbar {
+    display: none;
 }

@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import ClientListComponent from "./ClientListComponent";
 import "../userguistyles/UserComponentStyles.css"
 import CompanyComponent from "./CompanyComponent";
+import AddUserModalComponent from "./Modals/AddUserModalComponent";
 
 // Assuming this function fetches data from your API
 const fetchData = async () => {
@@ -20,9 +19,14 @@ const fetchData = async () => {
 
 const UsersComponent: React.FC = () => {
     const [data, setData] = useState<{ [company: string]: [] }>({});
-
-
+    const [addModalOpen,setAddModalOpen] = useState<boolean>(false)
     useEffect(() => {
+        let element = document.getElementById("addButton")
+        if(element){
+            element.addEventListener("click",()=>{
+                setAddModalOpen(true)
+            })
+        }
         const fetchDataAndSetData = async () => {
             try {
                 const result = await fetchData();
@@ -35,22 +39,30 @@ const UsersComponent: React.FC = () => {
                 throw error
             }
         };
-        fetchDataAndSetData().then(() => console.log("Data fetched")).catch((e) => {
+        fetchDataAndSetData().then(() => console.log("Data fetched")).catch(() => {
             console.log("Could not fetch Data")
         });
     }, []);
 
 
-    const clientList = Object.keys(data).map((value, ind) => {
+    const clientList = Object.keys(data).map((value) => {
         return (
-            <CompanyComponent value={value} clients={data[value]}/>
+            <CompanyComponent value={value} clients={data[value]} />
         )
     })
 
     return (
-        <div className="customer-component">
-            {clientList}
-        </div>)
+        <>
+            <div className="customer-component">
+                {clientList}
+            </div>
+            <div>
+                {addModalOpen && <AddUserModalComponent  closeModal={()=>setAddModalOpen(false)}/>}
+            </div>
+        </>
+
+    )
+
 }
 UsersComponent.displayName = "Users"
 export default UsersComponent

@@ -1,0 +1,30 @@
+/* top-bar */
+.topBar {
+    display: flex;
+    height: 10vh;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: rgba(79, 44, 146, 0.68);
+    cursor: inherit;
+}
+.topBarLeft{
+    width: 50%;
+}
+.topBarRight{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.topBarItem{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    width: 20vw;
+    cursor: inherit;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    color: white;
+    user-select: none;
+}

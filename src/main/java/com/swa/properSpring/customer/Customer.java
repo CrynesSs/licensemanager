@@ -17,9 +17,9 @@ public class Customer {
     private String addressDetailA;
     private String addressDetailB;
     @OneToMany()
-    private List<Employee> users  = new ArrayList<>();
+    private final List<Employee> users  = new ArrayList<>();
     @OneToMany()
-    private List<Contract> contracts = new ArrayList<>();
+    private final List<Contract> contracts = new ArrayList<>();
 
     public String getCustomerName() {
         return customerName;

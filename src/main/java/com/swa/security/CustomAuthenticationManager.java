@@ -17,7 +17,7 @@ import java.util.List;
 @Component
 public class CustomAuthenticationManager implements AuthenticationManager {
 
-    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private final EmployeeRepository repository;
 
 

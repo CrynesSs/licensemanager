@@ -1,5 +1,5 @@
 import React from "react";
-import "../../userguistyles/EditClientModalStyle.css"
+import "../Forms/EditClientModalStyle.css"
 import {Client} from "../ClientListComponent";
 import {ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import EditClientModalForm from "../Forms/EditClientModalForm";

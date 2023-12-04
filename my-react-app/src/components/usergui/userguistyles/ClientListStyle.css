@@ -1,56 +1,75 @@
 .client-list {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
+    scrollbar-width: none;
 }
-.nameContainerText{
-    margin: 10px;
+
+.client-list::-webkit-scrollbar {
+    display: none;
 }
-.client-list-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex: 0 0 calc(33.33% - 20px); /* Adjust the width as needed */
-    background: rgba(24, 163, 181, 0.6);
-    border-radius: 50px;
-    margin-right: 5vh;
-    border: 5px solid #ccc;
+
+.clientContainer {
+    max-height: 30vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
-.client-list-header .client-field{
-    color: white;
-    font-weight: bold;
+
+.clientContainer::-webkit-scrollbar {
+    display: none;
 }
+
 .client-card {
     border: 5px solid #ccc;
+    border-radius: 20px;
     display: flex;
     flex: 0 0 calc(33.33% - 20px); /* Adjust the width as needed */
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    margin: 10px 5vw;
 }
+
 .client-field {
     font-size: 18px;
     padding: 10px;
     width: 33.33%;
-    color: aqua;
+    color: white;
 }
 
-.btn-group{
+.btn-group {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 }
+
 .client-card .btn {
     display: block;
     height: 35px;
-    color: black;
-    border-radius: 12px;
+    color: #ffffff;
+    font-size: 20px;
     width: 150px;
+    border-style: none;
+    margin-right: 1vw;
+    margin-left: 1vw;
 }
+
 .client-card .btn-primary {
-    background-color: #007bff;
+    background-color: #13f119;
+}
+.client-card .btn-primary:hover {
+    background-color: #1c781e;
 }
 
 .client-card .btn-danger {
-    background-color: #ff4444;
+    background-color: #f30707;
+
+}
+.client-card .btn-danger:hover {
+    background-color: rgba(21, 3, 21, 0.91);
+    color: red;
+
+}
+.nameContainerText {
+    margin: 10px;
 }

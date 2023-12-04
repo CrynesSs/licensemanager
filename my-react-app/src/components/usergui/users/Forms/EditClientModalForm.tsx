@@ -1,7 +1,8 @@
 import React from "react";
 import {Client} from "../ClientListComponent";
 import {Form, FormGroup} from "reactstrap";
-import {FormControl, FormLabel, Row} from "react-bootstrap";
+import {FormControl, FormLabel, InputGroup} from "react-bootstrap";
+import InputGroupText from "react-bootstrap/InputGroupText";
 
 
 const EditClientModalForm: React.FC<{ client: Client }> = ({client}) => {
@@ -12,6 +13,11 @@ const EditClientModalForm: React.FC<{ client: Client }> = ({client}) => {
                     <FormLabel>
                         Username
                     </FormLabel>
+                    <InputGroup className={"exampleInput"}>
+                        <InputGroupText>@</InputGroupText>
+
+                        <FormControl placeholder={"Username"}></FormControl>
+                    </InputGroup>
                     <FormControl plaintext readOnly defaultValue={client.username}></FormControl>
                 </FormGroup>
             </Form>

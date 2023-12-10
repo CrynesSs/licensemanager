@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Button, ButtonGroup} from "reactstrap";
 import {Client} from "./ClientListComponent";
-import EditClientModalComponent from "./Modals/EditClientModalComponent";
+import EditClientModalComponent from "../Modals/EditClientModalComponent";
+import axios from "axios";
 
 
 const ClientCardComponent: React.FC<{ client: Client }> = ({client}) => {
@@ -25,6 +26,10 @@ const ClientCardComponent: React.FC<{ client: Client }> = ({client}) => {
                         Edit
                     </Button>
                     <Button color="danger" onClick={(event) => {
+                        const url = "http://localhost:8080/api/user"+`/${client.id}`
+                        axios.delete(url).then(r => console.log(r))
+                        const element = (event.target as HTMLButtonElement)
+                        element.parentElement!.parentElement!.remove();
                         event.stopPropagation()
                     }}>
                         Delete

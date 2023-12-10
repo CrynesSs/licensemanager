@@ -1,6 +1,12 @@
 package com.swa.properSpring.user;
 
+import com.swa.properSpring.customer.Customer;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +21,32 @@ public class Employee implements UserDetails {
     @Id
     @GeneratedValue
     private Long id;
+    @NotBlank
+    @Size(min = 8, max = 64)
+    @Pattern(regexp = "[a-zA-Z0-9.-]+")
+    private String username;
+    @NotBlank
+    @Size(min = 8, max = 64)
+    private String password;
+    @NotBlank
+    @Size(min = 8, max = 64)
+    @Email
+    private String email;
+    @NotBlank
+    @Size(min = 2, max = 64)
+    @Pattern(regexp = "[a-zA-Z0-9]+")
+    private String first_name;
+    @NotBlank
+    @Size(min = 2, max = 64)
+    @Pattern(regexp = "[a-zA-Z0-9']+")
+    private String last_name;
+    @NotBlank
+    @Size(min = 8, max = 64)
+    private String phone1;
+    private String phone2;
+    @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date createdOn;
 
     public String getUsername() {
         return username;
@@ -23,10 +55,6 @@ public class Employee implements UserDetails {
     @Override
     public boolean isAccountNonExpired() {
         return true;
-    }
-
-    public Set<String> getRoles() {
-        return roles;
     }
 
     @Override
@@ -44,11 +72,14 @@ public class Employee implements UserDetails {
         return true;
     }
 
+    @ManyToOne
+    private Customer customer;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "employee_roles", joinColumns = @JoinColumn(name = "employee_id"))
     @Column(name = "role")
     private Set<String> roles = new HashSet<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
@@ -65,11 +96,6 @@ public class Employee implements UserDetails {
 
     public String getEmail() {
         return email;
-    }
-
-
-    public String getCompany() {
-        return company;
     }
 
 
@@ -96,50 +122,28 @@ public class Employee implements UserDetails {
         return createdOn;
     }
 
-    private String username;
-    private String password;
-    private String email;
-    private String company;
-    private String first_name;
-    private String last_name;
-    private String phone1;
-    private String phone2;
-    private java.util.Date createdOn;
-
-
     protected Employee() {
 
     }
 
-
-    public Employee(String username, String password, String email, String company, String first_name, String last_name, String phone1, String phone2, HashSet<String> roles) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.company = company;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.phone1 = phone1;
-        this.phone2 = phone2;
-        this.roles = roles;
-        this.createdOn = new java.util.Date();
-    }
-
-    public void setPassword(String encodedPassword) {
-        this.password = encodedPassword;
-    }
-
     public static class Builder {
-
         private final Employee employee;
 
         public Builder(String username, String password) {
             employee = new Employee();
             employee.username = username;
             employee.password = password;
-            employee.createdOn = new Date();
             employee.roles = new HashSet<>();
         }
+
+        public void setPassword(String encodedPassword) {
+            employee.password = encodedPassword;
+        }
+
+        public String getPassword() {
+            return this.employee.getPassword();
+        }
+
 
         public Builder id(Long id) {
             employee.id = id;
@@ -161,11 +165,6 @@ public class Employee implements UserDetails {
             return this;
         }
 
-        public Builder addCompany(String company) {
-            employee.company = company;
-            return this;
-        }
-
         public Builder addPhone(String phoneNumber) {
             if (employee.phone1 == null) {
                 employee.phone1 = phoneNumber;
@@ -183,6 +182,11 @@ public class Employee implements UserDetails {
 
         public Employee build() {
             return employee;
+        }
+
+        public Builder addCompany(Customer customer) {
+            employee.customer = customer;
+            return this;
         }
     }
 

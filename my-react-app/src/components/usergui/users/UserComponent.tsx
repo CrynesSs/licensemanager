@@ -1,60 +1,57 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
 import "../userguistyles/UserComponentStyles.css"
-import CompanyComponent from "./CompanyComponent";
+import CompanyComponent from "./Components/CompanyComponent";
 import AddUserModalComponent from "./Modals/AddUserModalComponent";
 import {useNavigate} from "react-router-dom";
+import HomeUtility from "../../home/HomeUtility";
+import {AxiosError} from "axios";
+import {backend} from "../../../index";
 
 // Assuming this function fetches data from your API
-const fetchData = async () => {
-    try {
-        const jwtToken = localStorage.getItem('jwtToken');
-        axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
-        const response = await axios.get("http://localhost:8080/api/customer/employees");
-        return response.data as { [company: string]: [] };
-    } catch (error) {
-        throw error; // Propagate the error to the caller
-    }
-};
 
 const UsersComponent: React.FC = () => {
     const [data, setData] = useState<{ [company: string]: [] }>({});
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false)
+
     const navigate = useNavigate()
+    let element = document.getElementById("addButton")
+    if (element) {
+        element.addEventListener("click", () => {
+            setAddModalOpen(true)
+        })
+    }
     useEffect(() => {
-        let element = document.getElementById("addButton")
-        if (element) {
-            element.addEventListener("click", () => {
-                setAddModalOpen(true)
-            })
-        }
+        console.log("In UseeffectUserCompoennt")
         const fetchDataAndSetData = async () => {
             try {
-                const result = await fetchData();
-                setData(result);
-                console.log("Data fetched");
-            } catch (error) {
-                // Handle the error appropriately, e.g., display an error message
-                throw error
+                const url = backend + "/api/customer/employees"
+                const response = await HomeUtility.executeGet(url);
+                setData(response.data as { [company: string]: [] });
+            } catch (e: any) {
+                throw e;
             }
         };
-        fetchDataAndSetData()
-            .then(() => console.log("Data fetched"))
-            .catch((e) => {
-                if(e.response.status ==401){
-                    alert("Unauthorized, please log in")
-                    navigate("/login")
-                }else if(e.response.status.toString().startsWith("5")){
-                    alert("Server currently unavailable")
-                }
-
-            });
+        fetchDataAndSetData().then().catch((e : AxiosError) => {
+            if(e.code === "ERR_NETWORK"){
+                alert("Server currently unavailable")
+            }
+            else if(!e.response){
+                alert("Server currently unavailable")
+            }
+            else if (e.response!.status == 401) {
+                navigate("/login")
+            } else if (!e.response.status.toString().startsWith("5")) {
+                alert("Something went wrong")
+            } else {
+                alert("Server currently unavailable")
+            }
+        })
     }, []);
 
 
     const clientList = Object.keys(data).map((value) => {
         return (
-            <CompanyComponent value={value} clients={data[value]}/>
+            <CompanyComponent value={value} clients={data[value]} key={value}/>
         )
     })
 

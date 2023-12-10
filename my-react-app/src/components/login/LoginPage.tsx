@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import './loginstyle.css'
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {backend} from "../../index";
 
 const LoginPage:React.FC =  () => {
     const [username, setUsername] = useState('');
@@ -17,7 +18,7 @@ const LoginPage:React.FC =  () => {
     })
     const handleLogin = async () => {
         try {
-            const apiUrl = 'http://localhost:8080/token';
+            const apiUrl = backend+"/token";
             axios.post(apiUrl, null, {
                 auth: {
                     username: username,

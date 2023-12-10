@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+export const backend = "https://localhost:8443"
 root.render(
   <React.StrictMode>
     <App />

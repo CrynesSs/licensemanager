@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.292d5fb3.css",
+    "main.js": "/static/js/main.5cfc1e75.js",
+    "static/js/787.38f16daf.chunk.js": "/static/js/787.38f16daf.chunk.js",
+    "static/media/img.png": "/static/media/img.7c8bb8f03ddedeb45f45.png",
+    "static/media/circuit_board.svg": "/static/media/circuit_board.041dd3d6c73b7a08610b.svg",
+    "index.html": "/index.html",
+    "main.292d5fb3.css.map": "/static/css/main.292d5fb3.css.map",
+    "main.5cfc1e75.js.map": "/static/js/main.5cfc1e75.js.map",
+    "787.38f16daf.chunk.js.map": "/static/js/787.38f16daf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.292d5fb3.css",
+    "static/js/main.5cfc1e75.js"
+  ]
+}

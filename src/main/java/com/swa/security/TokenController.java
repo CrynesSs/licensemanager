@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 
 @RestController
 public class TokenController {
-
-
     private final JwtEncoder encoder;
 
     public TokenController(JwtEncoder encoder){

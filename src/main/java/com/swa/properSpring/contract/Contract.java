@@ -1,7 +1,13 @@
 package com.swa.properSpring.contract;
 
 import com.swa.properSpring.customer.Customer;
+import com.swa.properSpring.instance.Instance;
 import jakarta.persistence.*;
+import jakarta.validation.Constraint;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Date;
 
@@ -10,11 +16,49 @@ public class Contract {
     @Id
     @GeneratedValue
     private Long id;
+
+    public Contract() {
+
+    }
+    @Size(min = 4, max = 8)
+    @Pattern(regexp = "\\d{3}\\.\\d{4}")
+    @NotBlank
     private String Version;
+    @NotBlank
     private Date contractStart;
+    @NotBlank
     private Date contractEnd;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     private Customer customer;
+
+    @OneToOne(cascade = CascadeType.REMOVE,orphanRemoval = true)
+    private Instance instance;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Instance getInstance() {
+        return instance;
+    }
+
+    public void setVersion(String version) {
+        Version = version;
+    }
+
+    public void setContractStart(Date contractStart) {
+        this.contractStart = contractStart;
+    }
+
+    public void setContractEnd(Date contractEnd) {
+        this.contractEnd = contractEnd;
+    }
+
+    public void setInstance(Instance instance) {
+        this.instance = instance;
+    }
+
+
     public String getVersion() {
         return Version;
     }
@@ -31,8 +75,19 @@ public class Contract {
         this.customer = customer;
     }
 
+    public Contract(String version, Date contractStart, Date contractEnd, Customer customer, Instance instance) {
+        Version = version;
+        this.contractStart = contractStart;
+        this.contractEnd = contractEnd;
+        this.customer = customer;
+        this.instance = instance;
+    }
+
     public Long getId() {
         return id;
     }
 
+    public static class Builder {
+
+    }
 }

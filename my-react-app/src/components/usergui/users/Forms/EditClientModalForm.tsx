@@ -1,5 +1,5 @@
 import React from "react";
-import {Client} from "../ClientListComponent";
+import {Client} from "../Components/ClientListComponent";
 import {Form, FormGroup} from "reactstrap";
 import {FormControl, FormLabel, InputGroup} from "react-bootstrap";
 import InputGroupText from "react-bootstrap/InputGroupText";

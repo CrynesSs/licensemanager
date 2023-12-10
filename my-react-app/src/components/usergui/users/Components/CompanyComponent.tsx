@@ -4,8 +4,8 @@ import ClientListComponent, {Client} from "./ClientListComponent";
 
 const CompanyComponent: React.FC<{ value: string, clients: Client[]}> = ({value, clients}) => {
     const [currentClients, setClients] = useState<Client[]>(clients)
-
     const [expanded, setExpanded] = useState<boolean>(false)
+
     return (
         <div className={"companyContainer"} >
             <div className={"companyHeader"}>

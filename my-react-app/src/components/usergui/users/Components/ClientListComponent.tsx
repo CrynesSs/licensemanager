@@ -1,5 +1,5 @@
 import React from 'react';
-import "../userguistyles/ClientListStyle.css"
+import "../../userguistyles/ClientListStyle.css"
 import ClientCardComponent from './ClientCardComponent';
 
 export interface Client {

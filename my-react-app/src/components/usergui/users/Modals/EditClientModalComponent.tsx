@@ -1,6 +1,6 @@
 import React from "react";
 import "../Forms/EditClientModalStyle.css"
-import {Client} from "../ClientListComponent";
+import {Client} from "../Components/ClientListComponent";
 import {ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import EditClientModalForm from "../Forms/EditClientModalForm";
 

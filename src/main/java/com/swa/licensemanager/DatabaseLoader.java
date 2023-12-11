@@ -62,7 +62,6 @@ public class DatabaseLoader implements CommandLineRunner {
                 .setAddressDetail(faker.address().fullAddress())
                 .setAddressDetail(faker.address().fullAddress());
         Customer s = customer1.build();
-        repository.save(s);
         Employee.Builder employeeBuilder = new Employee
                 .Builder("BilboBaggins1337", "kekwbadpassword")
                 .addName(faker.name().firstName(), faker.name().lastName())
@@ -71,8 +70,9 @@ public class DatabaseLoader implements CommandLineRunner {
                 .setCompany(s)
                 .addRole("USER").addRole("ADMIN");
         Employee e =employeeBuilder.build();
-        s.addUser(e);
-        service.saveOrUpdateEntity(e);
         repository.save(s);
+        service.saveOrUpdateEntity(e);
+        s.addUser(e);
+
     }
 }

@@ -48,9 +48,10 @@ public class Employee implements UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date createdOn;
 
-    @ManyToOne()
-    @JoinColumn(name = "customer_id")
+    @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "customer_id")
+
     private Customer customer;
 
     public String getUsername() {

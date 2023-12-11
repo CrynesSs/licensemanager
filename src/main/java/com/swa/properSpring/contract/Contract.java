@@ -1,13 +1,12 @@
 package com.swa.properSpring.contract;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.swa.properSpring.customer.Customer;
 import com.swa.properSpring.instance.Instance;
 import jakarta.persistence.*;
-import jakarta.validation.Constraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Date;
 
@@ -28,7 +27,9 @@ public class Contract {
     private Date contractStart;
     @NotBlank
     private Date contractEnd;
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    @JsonIgnore
     private Customer customer;
 
     @OneToOne(cascade = CascadeType.REMOVE,orphanRemoval = true)

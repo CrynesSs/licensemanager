@@ -19,12 +19,12 @@ public class EmployeeService {
         this.entityRepository = entityRepository;
     }
 
-    public void saveOrUpdateEntity(Employee.Builder builder) {
+    public void saveOrUpdateEntity(Employee employee) {
         // Encode the password before saving or updating
-        String encodedPassword = passwordEncoder.encode(builder.getPassword());
-        builder.setPassword(encodedPassword);
+        String encodedPassword = passwordEncoder.encode(employee.getPassword());
+        employee.setPassword(encodedPassword);
 
         // Save or update the entity in the repository
-        entityRepository.save(builder.build());
+        entityRepository.save(employee);
     }
 }

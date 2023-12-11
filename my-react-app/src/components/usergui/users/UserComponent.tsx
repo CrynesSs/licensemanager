@@ -10,59 +10,43 @@ import {backend} from "../../../index";
 // Assuming this function fetches data from your API
 
 const UsersComponent: React.FC = () => {
-    const [data, setData] = useState<{ [company: string]: [] }>({});
+    const [companies, setCompanies] = useState<string[]>([]);
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false)
 
-    const navigate = useNavigate()
     let element = document.getElementById("addButton")
     if (element) {
         element.addEventListener("click", () => {
             setAddModalOpen(true)
         })
     }
-    useEffect(() => {
-        console.log("In UseeffectUserCompoennt")
-        const fetchDataAndSetData = async () => {
-            try {
-                const url = backend + "/api/customer/employees"
-                const response = await HomeUtility.executeGet(url);
-                setData(response.data as { [company: string]: [] });
-            } catch (e: any) {
-                throw e;
-            }
-        };
-        fetchDataAndSetData().then().catch((e : AxiosError) => {
-            if(e.code === "ERR_NETWORK"){
-                alert("Server currently unavailable")
-            }
-            else if(!e.response){
-                alert("Server currently unavailable")
-            }
-            else if (e.response!.status == 401) {
-                navigate("/login")
-            } else if (!e.response.status.toString().startsWith("5")) {
-                alert("Something went wrong")
-            } else {
-                alert("Server currently unavailable")
-            }
+    useEffect(()=>{
+        const url = backend + "/api/customer/companyNames"
+        HomeUtility.executeGet(url).then(r=>{
+            console.log(r.data)
+            setCompanies(r.data)
+        }).catch(e=>{
+            console.log(e)
         })
-    }, []);
+    },[])
 
 
-    const clientList = Object.keys(data).map((value) => {
+
+
+
+    const companyList = companies.map((companyName) => {
         return (
-            <CompanyComponent value={value} clients={data[value]} key={value}/>
+            <CompanyComponent  key={companyName} companyName={companyName}/>
         )
     })
 
     return (
         <>
             <div className="customer-component">
-                {clientList}
+                {companyList}
             </div>
             <div>
                 {addModalOpen &&
-                    <AddUserModalComponent closeModal={() => setAddModalOpen(false)} companies={Object.keys(data)}/>}
+                    <AddUserModalComponent closeModal={() => setAddModalOpen(false)} companies={companies}/>}
             </div>
         </>
 

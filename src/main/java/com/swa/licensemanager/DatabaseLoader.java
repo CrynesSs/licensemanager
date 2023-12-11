@@ -32,11 +32,9 @@ public class DatabaseLoader implements CommandLineRunner {
                     .setAddressDetail(faker.address().fullAddress())
                     .setAddressDetail(faker.address().fullAddress());
             Customer c = customer1.build();
-            repository.save(c);
             for(int k=0;k<10;++k){
                 Employee.Builder employeeBuilder = new Employee
                         .Builder(faker.name().username(), faker.internet().password())
-                        .addCompany(c)
                         .addName(faker.name().firstName(), faker.name().lastName())
                         .addEmail(faker.internet().emailAddress())
                         .addPhone(faker.phoneNumber().phoneNumber()).addPhone(faker.phoneNumber().phoneNumber())
@@ -45,12 +43,13 @@ public class DatabaseLoader implements CommandLineRunner {
                     employeeBuilder.addRole("ADMIN");
                 }
                 try{
-                    service.saveOrUpdateEntity(employeeBuilder);
+                    Employee e = employeeBuilder.build();
+                    service.saveOrUpdateEntity(e);
+                    c.addUser(e);
+                    repository.save(c);
                 }catch (Exception e){
                     System.out.println(employeeBuilder);
                 }
-
-                c.getUsers().add(employeeBuilder.build());
             }
         }
     }
@@ -66,11 +65,14 @@ public class DatabaseLoader implements CommandLineRunner {
         repository.save(s);
         Employee.Builder employeeBuilder = new Employee
                 .Builder("BilboBaggins1337", "kekwbadpassword")
-                .addCompany(s)
                 .addName(faker.name().firstName(), faker.name().lastName())
                 .addEmail(faker.internet().emailAddress())
                 .addPhone(faker.phoneNumber().phoneNumber()).addPhone(faker.phoneNumber().phoneNumber())
+                .setCompany(s)
                 .addRole("USER").addRole("ADMIN");
-        service.saveOrUpdateEntity(employeeBuilder);
+        Employee e =employeeBuilder.build();
+        s.addUser(e);
+        service.saveOrUpdateEntity(e);
+        repository.save(s);
     }
 }

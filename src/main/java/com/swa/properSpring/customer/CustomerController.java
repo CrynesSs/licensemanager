@@ -9,9 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -36,16 +34,30 @@ public class CustomerController {
         return repository.findAll().stream().filter((customer -> Objects.equals(customer.getCustomerName(), customerName))).findFirst().orElseGet(Customer::new);
     }
 
+    @GetMapping("/companyNames")
+    @Secured({AccessRoles.USER})
+    public List<String> getAllCompanyNames() {
+        return repository.findAll().stream().map(Customer::getCustomerName).collect(Collectors.toList());
+    }
+
     @GetMapping("/employees")
     @Secured({AccessRoles.USER})
-    public Map<String, List<Employee>> getCustomerEmployees() {
+    public Map<String, Set<Employee>> getCustomerEmployees() {
         List<Customer> customers = repository.findAll();
-        return customers.stream().collect(Collectors.toMap(Customer::getCustomerName, Customer::getUsers));
+        return customers.stream().collect(Collectors.toMap(Customer::getCustomerName, Customer::getEmployees));
+    }
+
+    @GetMapping("/employees/{companyName}")
+    @Secured({AccessRoles.USER})
+    public Set<Employee> getSingleCustomerEmployees(@PathVariable String companyName) {
+        Customer customer = repository.findByCustomerName(companyName);
+        if(customer == null)return new HashSet<>();
+        return customer.getEmployees();
     }
 
     @GetMapping("/contracts")
     @Secured({AccessRoles.USER})
-    public Map<String, List<Contract>> getCustomerContracts() {
+    public Map<String, Set<Contract>> getCustomerContracts() {
         List<Customer> customers = repository.findAll();
         return customers.stream().collect(Collectors.toMap(Customer::getCustomerName, Customer::getContracts));
     }

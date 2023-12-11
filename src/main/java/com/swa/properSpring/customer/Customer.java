@@ -4,15 +4,19 @@ import com.swa.properSpring.contract.Contract;
 import com.swa.properSpring.user.Employee;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Customer {
     @Id
     @GeneratedValue
-    private Long customer_id;
+    private Long id;
 
     @NotBlank
     private String customerName;
@@ -20,16 +24,25 @@ public class Customer {
     private String addressDetailA;
     @NotBlank
     private String addressDetailB;
-    @OneToMany(cascade = CascadeType.DETACH)
-    private final List<Employee> users  = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "customer",orphanRemoval = true, fetch = FetchType.LAZY)
+    private final Set<Employee> users  = new HashSet<>();
+
+    public void addUser(Employee employee){
+        users.add(employee);
+        employee.setCustomer(this);
+    }
+    public void removeUser(Employee employee){
+        users.remove(employee);
+        employee.setCustomer(null);
+    }
     @OneToMany(orphanRemoval = true,cascade = CascadeType.REMOVE)
-    private final List<Contract> contracts = new ArrayList<>();
+    private final Set<Contract> contracts = new HashSet<>();
 
     public String getCustomerName() {
         return customerName;
     }
 
-    public List<Employee> getUsers() {
+    public Set<Employee> getEmployees() {
         return users;
     }
 
@@ -41,7 +54,7 @@ public class Customer {
         return addressDetailB;
     }
 
-    public List<Contract> getContracts() {
+    public Set<Contract> getContracts() {
         return contracts;
     }
 
@@ -63,6 +76,8 @@ public class Customer {
             customer.addressDetailB = addressDetail;
             return this;
         }
+
+
         public Customer.Builder addUser(Employee employee){
             customer.users.add(employee);
             return this;

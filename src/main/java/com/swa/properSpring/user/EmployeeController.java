@@ -56,7 +56,6 @@ public class EmployeeController {
     @Secured({AccessRoles.ADMIN})
     @DeleteMapping("/{id}")
     public ResponseEntity<Employee> deleteClient(@PathVariable Long id) {
-
         userRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }

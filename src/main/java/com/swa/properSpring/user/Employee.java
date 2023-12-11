@@ -1,5 +1,6 @@
 package com.swa.properSpring.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.swa.properSpring.customer.Customer;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -12,7 +13,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,6 +48,11 @@ public class Employee implements UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date createdOn;
 
+    @ManyToOne()
+    @JoinColumn(name = "customer_id")
+    @JsonIgnore
+    private Customer customer;
+
     public String getUsername() {
         return username;
     }
@@ -72,8 +77,13 @@ public class Employee implements UserDetails {
         return true;
     }
 
-    @ManyToOne
-    private Customer customer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "employee_roles", joinColumns = @JoinColumn(name = "employee_id"))
@@ -126,6 +136,10 @@ public class Employee implements UserDetails {
 
     }
 
+    public void setPassword(String encodedPassword) {
+        this.password = encodedPassword;
+    }
+
     public static class Builder {
         private final Employee employee;
 
@@ -134,6 +148,10 @@ public class Employee implements UserDetails {
             employee.username = username;
             employee.password = password;
             employee.roles = new HashSet<>();
+        }
+        public Employee.Builder setCompany(Customer customer){
+            employee.setCustomer(customer);
+            return this;
         }
 
         public void setPassword(String encodedPassword) {
@@ -184,10 +202,6 @@ public class Employee implements UserDetails {
             return employee;
         }
 
-        public Builder addCompany(Customer customer) {
-            employee.customer = customer;
-            return this;
-        }
     }
 
     public void setId(Long id) {

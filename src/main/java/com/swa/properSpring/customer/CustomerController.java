@@ -37,6 +37,7 @@ public class CustomerController {
     @GetMapping("/companyNames")
     @Secured({AccessRoles.USER})
     public List<String> getAllCompanyNames() {
+        //this is technically a DTO
         return repository.findAll().stream().map(Customer::getCustomerName).collect(Collectors.toList());
     }
 

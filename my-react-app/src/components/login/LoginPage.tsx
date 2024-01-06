@@ -6,6 +6,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {backend} from "../../index";
 
+
 const LoginPage:React.FC =  () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -16,6 +17,7 @@ const LoginPage:React.FC =  () => {
             navigate('/')
         }
     })
+
     const handleLogin = async () => {
         try {
             const apiUrl = backend+"/token";
@@ -25,13 +27,13 @@ const LoginPage:React.FC =  () => {
                     password: password
                 }
             })
-                .then(response => {
+                .then((response: { data: string; }) => {
                     console.log('Response:', response.data);
                     // Set the token in local storage
                     localStorage.setItem('jwtToken', response.data);
                     navigate("/")
                 })
-                .catch(error => {
+                .catch((error: { message: any; }) => {
                     setError("Invalid Credentials")
                     console.error('Error:', error.message);
                 });

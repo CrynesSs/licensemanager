@@ -21,6 +21,7 @@ public class CustomAuthenticationManager implements AuthenticationManager {
     private final EmployeeRepository repository;
 
 
+
     public CustomAuthenticationManager(EmployeeRepository repository) {
         this.repository = repository;
     }

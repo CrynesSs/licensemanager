@@ -51,7 +51,6 @@ public class Employee implements UserDetails {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "customer_id")
-
     private Customer customer;
 
     public String getUsername() {

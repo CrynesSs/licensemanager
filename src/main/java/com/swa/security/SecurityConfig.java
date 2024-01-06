@@ -7,7 +7,6 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
@@ -45,12 +44,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // Require HTTPS for all requests
-                .requiresChannel(channelRequestMatcherRegistry -> {
-                    channelRequestMatcherRegistry
-                            .anyRequest()
-                            .requiresSecure();
-                })
+                //Require HTTPS for all requests
+                .requiresChannel(channelRequestMatcherRegistry -> channelRequestMatcherRegistry
+                        .anyRequest()
+                        .requiresSecure())
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers(
                                     new AntPathRequestMatcher("/static/**"),
@@ -104,10 +101,7 @@ public class SecurityConfig {
     // Configure ServletContextInitializer for additional servlet context settings
     @Bean
     public ServletContextInitializer servletContextInitializer() {
-        return servletContext -> {
-            servletContext.getSessionCookieConfig().setSecure(true);
-            servletContext.getSessionCookieConfig().setHttpOnly(true);
-        };
+        return servletContext -> servletContext.getSessionCookieConfig().setSecure(true);
     }
 
 
@@ -115,9 +109,7 @@ public class SecurityConfig {
     @Bean
     public ConfigurableServletWebServerFactory configurableServletWebServerFactory() {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-        factory.addConnectorCustomizers(connector -> {
-            connector.setRedirectPort(8443);
-        });
+        factory.addConnectorCustomizers(connector -> connector.setRedirectPort(8443));
         return factory;
     }
 

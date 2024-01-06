@@ -3,6 +3,7 @@ package com.swa.properSpring.contract;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.swa.properSpring.customer.Customer;
 import com.swa.properSpring.instance.Instance;
+import com.swa.properSpring.models.ContractModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -86,6 +87,10 @@ public class Contract {
 
     public Long getId() {
         return id;
+    }
+
+    public void updateSelf(ContractModel contract) {
+
     }
 
     public static class Builder {

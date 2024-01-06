@@ -65,7 +65,7 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Employee> deleteClient(@PathVariable Long id) {
         userRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        return userRepository.findById(id).isEmpty() ? ResponseEntity.ok().build() : ResponseEntity.status(404).build();
     }
 
     @Secured({AccessRoles.USER})

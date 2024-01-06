@@ -1,6 +1,5 @@
 package com.swa.properSpring.models;
 
-import com.swa.properSpring.customer.CustomerRepository;
 import com.swa.properSpring.user.Employee;
 
 import java.util.Objects;

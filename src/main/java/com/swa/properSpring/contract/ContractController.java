@@ -1,5 +1,6 @@
 package com.swa.properSpring.contract;
 
+import com.swa.properSpring.models.ContractModel;
 import com.swa.security.AccessRoles;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
@@ -37,18 +38,23 @@ public class ContractController {
     @PostMapping
     @Secured({AccessRoles.ADMIN})
     public ResponseEntity<?> postContract(@ModelAttribute Contract contract){
+
         return ResponseEntity.ok().build();
     }
     @PutMapping
     @Secured({AccessRoles.ADMIN})
-    public ResponseEntity<?> putContract(@ModelAttribute Contract contract){
+    public ResponseEntity<?> putContract(@ModelAttribute ContractModel contract){
+        repository.findById(contract.getId()).ifPresent(c->c.updateSelf(contract));
         return ResponseEntity.ok().build();
     }
+
+
     @DeleteMapping("/{id}")
     @Secured({AccessRoles.ADMIN})
     public ResponseEntity<?> deleteContract(@PathVariable Long id){
         repository.deleteById(id);
-        return ResponseEntity.ok().build();
+        return repository.findById(id).isEmpty() ? ResponseEntity.ok().build() : ResponseEntity.status(404).build();
+
     }
 
 }

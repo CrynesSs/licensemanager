@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -24,8 +25,8 @@ public class EmployeeController {
     @GetMapping
     @Secured({AccessRoles.USER})
     public List<Employee> getUsers(Authentication authentication) {
-        authentication.isAuthenticated();
-        return userRepository.findAll();
+        System.out.println(authentication.getCredentials().toString());
+        return authentication.isAuthenticated() ? userRepository.findAll() : Collections.emptyList();
     }
 
     @Secured({AccessRoles.ADMIN})
@@ -42,7 +43,7 @@ public class EmployeeController {
     /**
      * Updates the Client with the ID given
      *
-     * @param id The Clients ID
+     * @param id                    The Clients ID
      * @param updateEmployeePayload The RequestBody of what needs to be changed
      * @return ResponseEntity with Code
      */
@@ -65,9 +66,10 @@ public class EmployeeController {
     public Employee getClient(@PathVariable Long id) {
         return userRepository.findById(id).orElseThrow(RuntimeException::new);
     }
+
     @Secured({AccessRoles.USER})
     @GetMapping("/{username}")
-    public Employee findByUsername(@PathVariable String username){
+    public Employee findByUsername(@PathVariable String username) {
         System.out.println("username");
         return userRepository.findByUsername(username);
     }

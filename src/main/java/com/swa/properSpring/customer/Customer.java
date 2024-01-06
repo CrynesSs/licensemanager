@@ -1,19 +1,20 @@
 package com.swa.properSpring.customer;
 
 import com.swa.properSpring.contract.Contract;
+import com.swa.properSpring.models.EmployeeModel;
 import com.swa.properSpring.user.Employee;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Customer {
     @Id
     @GeneratedValue
     private Long id;
-
     @NotBlank
     private String customerName;
     @NotBlank
@@ -40,6 +41,9 @@ public class Customer {
 
     public Set<Employee> getEmployees() {
         return users;
+    }
+    public Set<EmployeeModel> getEmployeesForAPI(){
+        return users.stream().map(EmployeeModel::fromEmployee).collect(Collectors.toSet());
     }
 
     public String getAddressDetailA() {

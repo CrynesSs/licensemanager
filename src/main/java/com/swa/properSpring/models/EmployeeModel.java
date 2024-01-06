@@ -1,5 +1,8 @@
 package com.swa.properSpring.models;
 
+import com.swa.properSpring.customer.CustomerRepository;
+import com.swa.properSpring.user.Employee;
+
 import java.util.Objects;
 
 public class EmployeeModel {
@@ -8,6 +11,7 @@ public class EmployeeModel {
     private String password;
     private String email;
     private String phone1;
+    private String phone2;
 
     public EmployeeModel(String username, String password, String email, String phone1, String phone2, String firstName, String lastName, String company) {
         this.username = username;
@@ -20,7 +24,21 @@ public class EmployeeModel {
         this.company = company;
     }
 
-    private String phone2;
+    public static EmployeeModel fromEmployee(Employee employee) {
+        return new EmployeeModel(
+                employee.getUsername(),
+                null,
+                employee.getEmail(),
+                employee.getPhone1(),
+                employee.getPhone2(),
+                employee.getFirst_name(),
+                employee.getLast_name(),
+                employee.getCustomer().getCustomerName());
+    }
+    public Employee toEmployee(){
+        return new Employee.Builder(username,password).addEmail(email).addName(firstName,lastName).addPhone(phone1).addPhone(phone2).build();
+    }
+
 
     public String getUsername() {
         return username;

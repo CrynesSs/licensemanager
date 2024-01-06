@@ -1,6 +1,7 @@
 package com.swa.properSpring.user;
 
 import com.swa.properSpring.models.EmployeeModel;
+import com.swa.properSpring.services.EmployeeService;
 import com.swa.security.AccessRoles;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/user")
@@ -18,26 +21,25 @@ public class EmployeeController {
 
     private final EmployeeRepository userRepository;
 
-    public EmployeeController(EmployeeRepository repository) {
+    private final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeRepository repository, EmployeeService employeeService) {
         this.userRepository = repository;
+        this.employeeService = employeeService;
     }
 
     @GetMapping
     @Secured({AccessRoles.USER})
-    public List<Employee> getUsers(Authentication authentication) {
+    public Set<Employee> getUsers(Authentication authentication) {
         System.out.println(authentication.getCredentials().toString());
-        return authentication.isAuthenticated() ? userRepository.findAll() : Collections.emptyList();
+        return authentication.isAuthenticated() ? new HashSet<>(userRepository.findAll()) : Collections.emptySet();
     }
 
     @Secured({AccessRoles.ADMIN})
     @PostMapping
-    public ResponseEntity<Employee> createClient(@RequestBody Employee client) {
-        Employee savedClient = userRepository.save(client);
-        try {
-            return ResponseEntity.created(new URI("/clients/" + savedClient.getId())).body(savedClient);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseEntity<?> createClient(@ModelAttribute EmployeeModel model) {
+        boolean successful = employeeService.saveEntityWithCustomer(model.toEmployee(), model.getCompany());
+        return successful ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 
     /**
@@ -49,9 +51,14 @@ public class EmployeeController {
      */
     @Secured({AccessRoles.ADMIN})
     @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateClient(@PathVariable Long id, @ModelAttribute EmployeeModel updateEmployeePayload) {
-        Employee currentClient = userRepository.findById(id).orElseThrow(RuntimeException::new);
-        return ResponseEntity.ok(currentClient);
+    public ResponseEntity<?> updateClient(@PathVariable Long id, @ModelAttribute EmployeeModel updateEmployeePayload) {
+        userRepository.findById(id).ifPresentOrElse(
+                (employee) -> employee.updateSelf(updateEmployeePayload),
+                () -> {
+                    userRepository.save(updateEmployeePayload.toEmployee());
+                }
+        );
+        return ResponseEntity.ok().build();
     }
 
     @Secured({AccessRoles.ADMIN})

@@ -34,6 +34,7 @@ public class CustomerController {
         return repository.findAll().stream().map(CustomerModel::fromCustomer).collect(Collectors.toSet());
     }
 
+    //GetSingleCustomerByName
     @GetMapping("/{customerName}")
     @Secured({AccessRoles.USER})
     public Customer getCustomerByName(@PathVariable String customerName) {
@@ -54,9 +55,9 @@ public class CustomerController {
 
     @GetMapping("/employees/{companyName}")
     @Secured({AccessRoles.USER})
-    public Set<Employee> getSingleCustomerEmployees(@PathVariable String companyName) {
+    public Set<EmployeeModel> getSingleCustomerEmployees(@PathVariable String companyName) {
         Customer customer = repository.findByCustomerName(companyName);
-        return customer == null ? new HashSet<>() : customer.getEmployees();
+        return customer == null ? new HashSet<>() : customer.getEmployees().stream().map(EmployeeModel::fromEmployee).collect(Collectors.toSet());
     }
 
     @GetMapping("/contracts")
@@ -67,8 +68,15 @@ public class CustomerController {
 
     @PostMapping(value = "/employees", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @Secured({AccessRoles.ADMIN})
-    ResponseEntity<Employee> createClient(@ModelAttribute EmployeeModel model) {
+    ResponseEntity<?> createClient(@ModelAttribute EmployeeModel model) {
         boolean successful = employeeService.saveEntityWithCustomer(model.toEmployee(),model.getCompany());
         return successful ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
+    @PutMapping
+    @Secured({AccessRoles.ADMIN})
+    ResponseEntity<?> createOrUpdateCustomer(@ModelAttribute EmployeeModel model){
+        boolean successful = employeeService.saveEntityWithCustomer(model.toEmployee(),model.getCompany());
+        return successful ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+    }
+
 }

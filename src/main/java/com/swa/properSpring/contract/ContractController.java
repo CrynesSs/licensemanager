@@ -7,7 +7,10 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/api/contract")
@@ -21,9 +24,9 @@ public class ContractController {
 
     @GetMapping
     @Secured({AccessRoles.USER})
-    public List<Contract> getContracts(){
+    public Set<Contract> getContracts(){
         Sort sort = Sort.by(Sort.Direction.ASC,"Version");
-        return repository.findAll(sort);
+        return new HashSet<>(repository.findAll(sort));
     }
     @GetMapping("/{id}")
     @Secured({AccessRoles.USER})

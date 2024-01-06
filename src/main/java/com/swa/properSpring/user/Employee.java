@@ -2,16 +2,19 @@ package com.swa.properSpring.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.swa.properSpring.customer.Customer;
+import com.swa.properSpring.models.EmployeeModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -138,6 +141,17 @@ public class Employee implements UserDetails {
 
     public void setPassword(String encodedPassword) {
         this.password = encodedPassword;
+    }
+
+    public void updateSelf(@NotNull EmployeeModel updateEmployeePayload) {
+        Employee updateEmployee = updateEmployeePayload.toEmployee();
+        Arrays.stream(updateEmployee.getClass().getDeclaredFields()).forEach((field -> {
+            try {
+                this.getClass().getDeclaredField(field.getName()).set(this,updateEmployee.getClass().getDeclaredField(field.getName()).get(updateEmployee));
+            } catch (IllegalAccessException | NoSuchFieldException e) {
+                throw new RuntimeException(e);
+            }
+        }));
     }
 
     public static class Builder {
